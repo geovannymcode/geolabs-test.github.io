@@ -14,6 +14,7 @@ theme:
   name: material
 nav:
   - Preguntas Java: index.md
+  - Programación Funcional: fp.md
   
 
 # Customization
