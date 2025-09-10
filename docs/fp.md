@@ -1,546 +1,505 @@
-# Guía de Programación Funcional en Java 8
+# Guía de Entrevista: Java 8 y Programación Funcional
 
-## 1) ¿Qué nuevas características se añadieron en Java 8?
+## 1) ¿Qué características importantes se introdujeron en Java 8?
 
-Java 8 incorporó varias características importantes:
+- **Expresiones lambda**: Funciones anónimas sin clase `(a, b) -> a + b`
+- **Referencias a métodos**: Forma abreviada de lambda `String::valueOf`
+- **Interfaces funcionales**: Interfaces con un único método abstracto
+- **Métodos default y static en interfaces**: Para extender interfaces sin romper compatibilidad
+- **API Stream**: Para procesamiento funcional de colecciones
+- **Optional**: Contenedor para valores potencialmente nulos
+- **Nueva API de Fecha y Hora**: Reemplazo inmutable y thread-safe para Date/Calendar
+- **Nashorn**: Motor JavaScript mejorado
 
-- **Expresiones Lambda** - funciones anónimas `(a, b) -> a + b`
-- **Referencias a métodos** - `String::valueOf`
-- **Interfaces funcionales** - interfaces con un único método abstracto
-- **Métodos default y static en interfaces**
-- **API Stream** - procesamiento de colecciones de manera funcional
-- **Optional** - contenedor para valores que pueden ser nulos
-- **Nueva API de Fecha y Hora**
-- **Nashorn** - motor JavaScript mejorado
-- **Anotaciones repetibles**
-- **Mejoras en concurrencia**
-
-Ejemplo de expresión lambda:
 ```java
-List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5);
-// Antes de Java 8
-for (Integer num : numeros) {
-    System.out.println(num);
-}
-// Con Java 8
-numeros.forEach(num -> System.out.println(num));
+// Ejemplo de uso de nuevas características
+List<String> nombres = Arrays.asList("Ana", "Juan", "Pedro");
+nombres.stream()                            // Stream API
+      .filter(s -> s.length() > 3)          // Lambda
+      .map(String::toUpperCase)             // Referencia a método
+      .forEach(System.out::println);        // Referencia a método
 ```
 
-## 2) ¿Qué es una referencia a método?
+## 2) ¿Qué es una expresión lambda y cuál es su caso de uso ideal?
 
-Una referencia a método es una forma abreviada de expresión lambda que hace referencia a un método existente. Permite usar métodos como parámetros, facilitando la programación funcional.
+Una función anónima que puede referenciarse y pasarse como objeto. Caso de uso ideal: implementar interfaces funcionales de forma concisa.
 
-Sintaxis: `TipoClase::nombreMetodo`
+```java
+// Antes de Java 8
+Runnable r = new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Ejecutando");
+    }
+};
 
-Tipos de referencias a método:
+// Con lambda en Java 8
+Runnable r = () -> System.out.println("Ejecutando");
+```
 
+## 3) Explique la sintaxis de una expresión lambda
+
+Componentes:
+- **Parámetros**: Entre paréntesis (opcionales si hay un solo parámetro sin tipo)
+- **Flecha** `->`: Separa parámetros del cuerpo
+- **Cuerpo**: Expresión única o bloque de código entre llaves
+
+Formatos:
+```java
+// Sin parámetros
+() -> System.out.println("Hola")
+
+// Un parámetro (paréntesis opcionales)
+n -> n * n
+(String s) -> s.length()
+
+// Múltiples parámetros
+(a, b) -> a + b
+(int x, int y) -> { return x + y; }
+
+// Bloque de código (requiere return explícito)
+(String s) -> {
+    String result = s.toUpperCase();
+    return result;
+}
+```
+
+## 4) Ejecute un hilo usando una expresión lambda
+
+```java
+// Antes de Java 8
+new Thread(new Runnable() {
+    @Override
+    public void run() {
+        System.out.println("Ejecutando hilo");
+    }
+}).start();
+
+// Con lambda en Java 8
+new Thread(() -> System.out.println("Ejecutando hilo")).start();
+```
+
+## 5) ¿Qué es una referencia a método?
+
+Una forma abreviada de expresión lambda que refiere a un método existente. Se usa cuando la lambda simplemente llama a un método.
+
+Tipos:
 - A método estático: `Math::abs`
-- A método de instancia de un objeto específico: `obj::metodo`
-- A método de instancia de un objeto arbitrario: `String::length`
+- A método de instancia de objeto específico: `objeto::método`
+- A método de instancia de objeto arbitrario: `String::length`
 - A constructor: `ArrayList::new`
 
-Ejemplo:
 ```java
 // Lambda
 Function<String, Integer> lambda = s -> s.length();
 // Referencia a método equivalente
 Function<String, Integer> referencia = String::length;
 
+// Uso con forEach
 List<String> nombres = Arrays.asList("Ana", "Juan", "Carlos");
-// Uso de referencia a método
 nombres.forEach(System.out::println);
 ```
 
-## 3) ¿Cuál es el significado de la expresión String::valueOf?
+## 6) ¿Qué es una interfaz funcional?
 
-Es una referencia a método estático que apunta al método `valueOf` de la clase `String`. Permite convertir distintos tipos de datos a String de forma funcional.
+Una interfaz con exactamente un método abstracto. Se usa como tipo objetivo para expresiones lambda.
 
-Ejemplo:
 ```java
-// Convertir un entero a String usando referencia a método
-Function<Integer, String> conversor = String::valueOf;
-String resultado = conversor.apply(123); // "123"
-
-// Equivalente a la lambda:
-Function<Integer, String> conversorLambda = x -> String.valueOf(x);
-```
-
-## 4) ¿Qué es Optional? ¿Cómo se puede usar?
-
-`Optional<T>` es un contenedor que puede contener o no un valor no nulo. Ayuda a prevenir `NullPointerException` y a manejar valores ausentes de forma más elegante.
-
-Operaciones principales:
-
-- `of(valor)` - Crea Optional con valor no nulo
-- `ofNullable(valor)` - Crea Optional que puede contener null
-- `empty()` - Crea Optional vacío
-- `isPresent()` - Verifica si hay valor
-- `get()` - Obtiene valor (si existe)
-- `orElse()` - Devuelve valor o alternativa
-- `orElseGet()` - Alternativa mediante proveedor
-- `orElseThrow()` - Lanza excepción si no hay valor
-- `ifPresent()` - Ejecuta acción si hay valor
-- `map()` - Transforma valor si existe
-
-Ejemplo:
-```java
-// Antes de Java 8
-Usuario buscarUsuario(String id) {
-    // Puede devolver null
+@FunctionalInterface  // Anotación opcional
+interface Calculadora {
+    int operar(int a, int b);  // Único método abstracto
+    
+    // Puede tener métodos default o static
+    default void mostrarInfo() {
+        System.out.println("Calculadora");
+    }
 }
 
-// Uso propenso a NullPointerException
-String ciudad = buscarUsuario("123").getDireccion().getCiudad();
-
-// Con Java 8 y Optional
-Optional<Usuario> buscarUsuario(String id) {
-    // Devuelve Optional
-}
-
-// Uso seguro
-String ciudad = buscarUsuario("123")
-                .map(Usuario::getDireccion)
-                .map(Direccion::getCiudad)
-                .orElse("Desconocida");
+// Implementación con lambda
+Calculadora suma = (a, b) -> a + b;
+int resultado = suma.operar(5, 3);  // 8
 ```
 
-## 5) Describa algunas de las interfaces funcionales en la biblioteca estándar
+## 7) ¿Cuáles son los tipos de interfaces funcionales más comunes?
 
-Java 8 incluye varias interfaces funcionales en el paquete `java.util.function`:
+Java 8 incluye varias interfaces funcionales en `java.util.function`:
 
-- **`Function<T,R>`**: Toma T, devuelve R - `apply(T t)`
-  ```java
-  Function<String, Integer> longitud = s -> s.length();
-  ```
-
-- **`Predicate<T>`**: Toma T, devuelve boolean - `test(T t)`
-  ```java
-  Predicate<String> esVacio = s -> s.isEmpty();
-  ```
-
-- **`Consumer<T>`**: Toma T, no devuelve nada - `accept(T t)`
+- **`Consumer<T>`**: Acepta un valor, no devuelve nada - `accept(T t)`
   ```java
   Consumer<String> imprimir = s -> System.out.println(s);
   ```
 
-- **`Supplier<T>`**: No toma argumentos, devuelve T - `get()`
+- **`Supplier<T>`**: No acepta parámetros, devuelve un valor - `get()`
   ```java
   Supplier<Double> aleatorio = () -> Math.random();
   ```
 
-- **`UnaryOperator<T>`**: Toma T, devuelve T - `apply(T t)`
+- **`Function<T,R>`**: Acepta T, devuelve R - `apply(T t)`
+  ```java
+  Function<String, Integer> longitud = s -> s.length();
+  ```
+
+- **`Predicate<T>`**: Acepta T, devuelve boolean - `test(T t)`
+  ```java
+  Predicate<String> esVacio = s -> s.isEmpty();
+  ```
+
+- **`UnaryOperator<T>`**: Acepta T, devuelve T - `apply(T t)`
   ```java
   UnaryOperator<String> mayusculas = s -> s.toUpperCase();
   ```
 
-- **`BinaryOperator<T>`**: Toma dos T, devuelve T - `apply(T t1, T t2)`
+- **`BinaryOperator<T>`**: Acepta dos T, devuelve T - `apply(T t1, T t2)`
   ```java
   BinaryOperator<Integer> suma = (a, b) -> a + b;
   ```
 
-- **`BiFunction<T,U,R>`**: Toma T y U, devuelve R - `apply(T t, U u)`
-  ```java
-  BiFunction<String, Integer, String> repetir = (s, n) -> s.repeat(n);
-  ```
+## 8) ¿Qué es un método default y un método static en interfaces?
 
-## 6) ¿Qué es una interfaz funcional? ¿Cuáles son las reglas para definir una interfaz funcional?
+**Método default**: Método con implementación dentro de una interfaz. Permite añadir funcionalidades a interfaces existentes sin romper compatibilidad.
 
-Una interfaz funcional es aquella que contiene **exactamente un método abstracto**. Estas interfaces pueden usar la anotación `@FunctionalInterface` (opcional pero recomendada).
+**Método static**: Método estático en interfaz, pertenece solo a la interfaz y no a implementaciones.
 
-Reglas:
-
-- Debe tener exactamente un método abstracto
-- Puede tener múltiples métodos default o static
-- Los métodos de Object sobreescritos no cuentan como método abstracto
-- Si una interfaz hereda un método abstracto de otra y no agrega más métodos abstractos, sigue siendo una interfaz funcional
-
-Ejemplo:
-```java
-@FunctionalInterface
-interface Calculadora {
-    int operar(int a, int b); // Único método abstracto
-    
-    default void mostrarInfo() {
-        System.out.println("Calculadora básica");
-    }
-    
-    static Calculadora suma() {
-        return (a, b) -> a + b;
-    }
-}
-
-// Uso
-Calculadora sumador = (a, b) -> a + b;
-int resultado = sumador.operar(5, 3); // 8
-```
-
-## 7) ¿Qué es un método default y cuándo lo usamos?
-
-Un método default es un método con implementación dentro de una interfaz. Se introdujo en Java 8 para permitir agregar funcionalidades a interfaces existentes sin romper compatibilidad.
-
-Usos principales:
-
-- Evolucionar interfaces existentes sin romper código cliente
-- Proporcionar implementaciones por defecto para métodos comunes
-- Facilitar la herencia múltiple de comportamiento
-
-Ejemplo:
 ```java
 interface Vehículo {
-    void acelerar();
+    void acelerar();  // Método abstracto tradicional
     
+    // Método default (todas las implementaciones lo heredan)
     default void tocarBocina() {
-        System.out.println("¡Beep! ¡Beep!");
+        System.out.println("¡Beep!");
+    }
+    
+    // Método static (pertenece solo a la interfaz)
+    static Vehículo crearVehículoEléctrico() {
+        return new VehículoEléctrico();
     }
 }
-
-// La clase sólo necesita implementar acelerar()
-class Coche implements Vehículo {
-    @Override
-    public void acelerar() {
-        System.out.println("Coche acelerando");
-    }
-    // tocarBocina() ya tiene implementación por defecto
-}
 ```
 
-## 8) ¿Compilará el siguiente código?
+## 9) ¿Qué condiciones deben cumplirse para que una expresión lambda coincida con una interfaz funcional?
 
-La respuesta depende del código específico a analizar. Para evaluar si un código con interfaces funcionales, lambdas o métodos default compilará, debemos verificar:
+1. La interfaz debe tener exactamente un método abstracto
+2. Los parámetros de la lambda deben coincidir con los del método
+3. El tipo de retorno de la lambda debe ser compatible con el del método
 
-- Si las interfaces funcionales tienen exactamente un método abstracto
-- Si las expresiones lambda son compatibles con las interfaces funcionales
-- Si no hay ambigüedad en la herencia múltiple de métodos default
+## 10) ¿Qué es la clase Optional?
 
-## 9) ¿Qué es una expresión lambda y para qué se usa?
+Contenedor que puede contener un valor no nulo o estar vacío. Evita `NullPointerException` y proporciona operaciones para tratar valores ausentes.
 
-Una expresión lambda es una función anónima que puede ser pasada como argumento o almacenada en una variable. Se usa para implementar interfaces funcionales de forma concisa y expresiva.
-
-Usos principales:
-
-- Pasar comportamiento como parámetro
-- Implementar callbacks
-- Procesar colecciones funcionalmente (filter, map, reduce)
-- Programación concurrente simplificada
-- Implementar listeners/handlers de eventos
-
-Ejemplo:
 ```java
-// Antes de Java 8
-Collections.sort(personas, new Comparator<Persona>() {
-    @Override
-    public int compare(Persona p1, Persona p2) {
-        return p1.getNombre().compareTo(p2.getNombre());
-    }
-});
+// Crear Optional
+Optional<String> empty = Optional.empty();
+Optional<String> nombre = Optional.of("Juan");  // No puede ser null
+Optional<String> posibleNull = Optional.ofNullable(obtenerNombre());  // Puede ser null
 
-// Con lambda en Java 8
-Collections.sort(personas, (p1, p2) -> p1.getNombre().compareTo(p2.getNombre()));
-// O mejor aún
-personas.sort(Comparator.comparing(Persona::getNombre));
-```
-
-## 10) Explique la sintaxis y características de una expresión lambda
-
-Sintaxis:
-```
-(parámetros) -> expresión
-```
-o
-```
-(parámetros) -> { sentencias; }
-```
-
-Características:
-
-- Los paréntesis pueden omitirse si hay un solo parámetro sin tipo explícito
-- Las llaves pueden omitirse si el cuerpo es una sola expresión
-- El tipo de los parámetros es opcional (inferencia de tipos)
-- Si el cuerpo tiene llaves, necesita `return` explícito para devolver valor
-- Accede a variables del ámbito circundante (debe ser final o efectivamente final)
-- No puede acceder a `this` o `super` de la clase contenedora
-
-Ejemplos:
-```java
-// Sin parámetros
-Runnable r = () -> System.out.println("Hola");
-
-// Un parámetro (paréntesis opcionales)
-Consumer<String> c = s -> System.out.println(s);
-
-// Múltiples parámetros
-Comparator<String> comp = (s1, s2) -> s1.compareTo(s2);
-
-// Con tipos explícitos
-BiFunction<Integer, Integer, Integer> sum = (Integer a, Integer b) -> a + b;
-
-// Cuerpo con múltiples sentencias
-Comparator<Persona> comp = (p1, p2) -> {
-    int resultado = p1.getApellido().compareTo(p2.getApellido());
-    if (resultado == 0) {
-        resultado = p1.getNombre().compareTo(p2.getNombre());
-    }
-    return resultado;
-};
-```
-
-## 11) ¿Qué es Nashorn en Java 8?
-
-Nashorn es un motor de JavaScript incluido en Java 8 que reemplaza al antiguo motor Rhino. Permite ejecutar código JavaScript dentro de aplicaciones Java.
-
-Características:
-
-- Mayor rendimiento (compilación JIT)
-- Mejor integración con JVM
-- Soporte para características de ECMAScript 5.1
-- Acceso bidireccional entre Java y JavaScript
-
-Ejemplo:
-```java
-// Evaluando JavaScript desde Java
-ScriptEngineManager manager = new ScriptEngineManager();
-ScriptEngine engine = manager.getEngineByName("nashorn");
-
-// Ejecutar código JavaScript
-engine.eval("print('Hola desde JavaScript');");
-
-// Pasar variables de Java a JavaScript
-int numero = 42;
-engine.put("javaVar", numero);
-engine.eval("print('El número es: ' + javaVar);");
-
-// Llamar funciones JavaScript desde Java
-engine.eval("function sumar(a, b) { return a + b; }");
-Invocable invocable = (Invocable) engine;
-Object resultado = invocable.invokeFunction("sumar", 5, 3);
-System.out.println("Resultado: " + resultado); // 8
-```
-
-## 12) ¿Qué es JJS?
-
-JJS es el nuevo ejecutable o herramienta de línea de comandos incluida en Java 8 que se utiliza para ejecutar código JavaScript en la consola mediante el motor Nashorn.
-
-Características:
-
-- Ejecución de scripts JavaScript desde la terminal
-- Modo interactivo (REPL)
-- Acceso a las APIs de Java desde JavaScript
-- Opciones para compilación, depuración y optimización
-
-Ejemplo de uso:
-```bash
-# Ejecutar un archivo JavaScript
-jjs script.js
-
-# Modo interactivo
-jjs
->> var saludo = "Hola Mundo";
->> print(saludo);
-Hola Mundo
->> var lista = Java.type("java.util.ArrayList");
->> var miLista = new lista();
->> miLista.add("Item 1");
->> print(miLista.size());
-1
-```
-
-## 13) ¿Qué es un Stream? ¿En qué se diferencia de una Colección?
-
-Un Stream es una secuencia de elementos que soporta operaciones agregadas secuenciales y paralelas. Permite procesamiento de datos declarativo (qué hacer, no cómo hacerlo).
-
-Diferencias con colecciones:
-
-- **Procesamiento vs. almacenamiento**: Streams procesan datos, colecciones almacenan datos
-- **Evaluación perezosa**: Streams evalúan elementos solo cuando es necesario
-- **Consumo único**: Streams no pueden ser reutilizados después de una operación terminal
-- **Operaciones funcionales**: Streams favorecen operaciones que no modifican la fuente
-- **Paralelismo**: Streams pueden operar en paralelo sin código adicional
-
-Ejemplo:
-```java
-List<String> nombres = Arrays.asList("Ana", "Juan", "Carlos", "Pedro", "María");
-
-// Colección: Enfoque imperativo
-List<String> nombresLargosImpera = new ArrayList<>();
-for (String nombre : nombres) {
-    if (nombre.length() > 4) {
-        nombresLargosImpera.add(nombre.toUpperCase());
-    }
+// Usar Optional
+if (nombre.isPresent()) {
+    System.out.println(nombre.get());
 }
 
-// Stream: Enfoque declarativo
-List<String> nombresLargos = nombres.stream()
-    .filter(nombre -> nombre.length() > 4)
-    .map(String::toUpperCase)
-    .collect(Collectors.toList());
+// Mejor forma (funcional)
+nombre.ifPresent(n -> System.out.println(n));
+
+// Valor alternativo si no existe
+String resultado = nombre.orElse("Desconocido");
+
+// Lanzar excepción si no existe
+String valor = nombre.orElseThrow(() -> new NoSuchElementException());
+
+// Transformar si existe (sin NullPointerException)
+Optional<Integer> longitud = nombre.map(String::length);
 ```
 
-## 14) ¿Cuál es la diferencia entre operaciones intermedias y terminales?
+## 11) ¿Qué es la API Stream y cómo se usa?
 
-Las operaciones de Stream se combinan en tuberías (pipelines). Todas las operaciones son intermedias o terminales:
+Secuencia de elementos que soporta operaciones agregadas. Permite procesamiento de datos declarativo (qué hacer, no cómo).
+
+Componentes:
+1. Fuente de datos (colección, array)
+2. Operaciones intermedias (transforman el stream)
+3. Operación terminal (produce resultado)
+
+```java
+List<String> nombres = Arrays.asList("Ana", "Juan", "Carlos", "Pedro");
+
+// Filtrar nombres que empiezan con 'J' y convertir a mayúsculas
+List<String> resultado = nombres.stream()        // Fuente
+    .filter(n -> n.startsWith("J"))              // Intermedia
+    .map(String::toUpperCase)                    // Intermedia
+    .collect(Collectors.toList());               // Terminal
+```
+
+## 12) ¿Qué son las operaciones intermedias y terminales?
 
 **Operaciones intermedias**:
-
-- Devuelven un nuevo Stream (transformado)
+- Devuelven un nuevo stream
 - Son perezosas (no se ejecutan hasta que haya una operación terminal)
-- Pueden encadenarse
 - Ejemplos: `filter()`, `map()`, `sorted()`, `distinct()`, `limit()`
 
 **Operaciones terminales**:
-
 - Producen un resultado o efecto secundario
-- Activan la ejecución del pipeline
-- Consumen el Stream (no se puede reutilizar después)
+- Consumen el stream (no se puede reutilizar)
 - Ejemplos: `forEach()`, `collect()`, `reduce()`, `count()`, `anyMatch()`
 
-Ejemplo:
 ```java
-List<Integer> numeros = Arrays.asList(1, 2, 3, 4, 5, 6);
-
-numeros.stream()
-    .filter(n -> {             // Intermedia
+long contador = Stream.of(1, 2, 3, 4, 5)
+    .filter(n -> {                     // Intermedia
         System.out.println("Filtrando: " + n);
         return n % 2 == 0;
     })
-    .map(n -> {                // Intermedia
-        System.out.println("Mapeando: " + n);
-        return n * n;
-    })
-    .limit(2)                  // Intermedia
-    .forEach(System.out::println); // Terminal
-
-// Salida:
-// Filtrando: 1
-// Filtrando: 2
-// Mapeando: 2
-// 4
-// Filtrando: 3
-// Filtrando: 4
-// Mapeando: 4
-// 16
+    .count();                          // Terminal
+// Solo se procesan los elementos cuando se llega a count()
 ```
 
-## 15) ¿Cuál es la diferencia entre las operaciones map y flatMap?
+## 13) ¿Qué es un Collector y cómo se usa?
 
-Ambas transforman elementos en un Stream, pero:
+Mecanismo para combinar elementos de un stream en un resultado final (lista, mapa, cadena, etc.).
 
-**map**: Transforma cada elemento en exactamente otro elemento.
-
-- Aplicación uno-a-uno
-- Devuelve Stream con misma cantidad de elementos
-- Función aplicada: `T -> R`
-
-**flatMap**: Transforma cada elemento en 0 o más elementos, "aplanando" el resultado.
-
-- Aplicación uno-a-muchos
-- Útil para "aplanar" Streams anidados
-- Función aplicada: `T -> Stream<R>`
-
-Ejemplo:
 ```java
-// map: transformación uno-a-uno
-List<String> palabras = Arrays.asList("Hola", "Mundo");
-List<Integer> longitudes = palabras.stream()
-    .map(String::length)  // String -> Integer
-    .collect(Collectors.toList());
-// Resultado: [4, 5]
+// Recolectar en una lista
+List<String> lista = stream.collect(Collectors.toList());
 
-// flatMap: aplanamiento de streams
-List<List<Integer>> listaDeNumeros = Arrays.asList(
+// Recolectar en un conjunto
+Set<String> conjunto = stream.collect(Collectors.toSet());
+
+// Recolectar en una cadena
+String cadena = stream.collect(Collectors.joining(", "));
+
+// Agrupar por alguna propiedad
+Map<Integer, List<Persona>> porEdad = personas.stream()
+    .collect(Collectors.groupingBy(Persona::getEdad));
+
+// Particionar según un predicado
+Map<Boolean, List<Persona>> adultos = personas.stream()
+    .collect(Collectors.partitioningBy(p -> p.getEdad() >= 18));
+```
+
+## 14) ¿Cuál es la diferencia entre las operaciones map y flatMap?
+
+**map**: Transforma cada elemento en exactamente otro elemento (uno a uno).
+```java
+// String -> Integer (longitud)
+Stream<Integer> longitudes = Stream.of("a", "bc", "def")
+    .map(String::length);  // [1, 2, 3]
+```
+
+**flatMap**: Transforma cada elemento en 0 o más elementos y "aplana" el resultado (uno a muchos).
+```java
+// Lista de listas -> Lista plana
+List<List<Integer>> listas = Arrays.asList(
     Arrays.asList(1, 2),
     Arrays.asList(3, 4, 5)
 );
-
-List<Integer> todosLosNumeros = listaDeNumeros.stream()
-    .flatMap(Collection::stream)  // List<Integer> -> Stream<Integer>
+List<Integer> plana = listas.stream()
+    .flatMap(Collection::stream)  // [1, 2, 3, 4, 5]
     .collect(Collectors.toList());
-// Resultado: [1, 2, 3, 4, 5]
-
-// Otro ejemplo: Obtener palabras únicas de frases
-List<String> frases = Arrays.asList("Hola mundo", "Adiós mundo");
-List<String> palabrasUnicas = frases.stream()
-    .flatMap(frase -> Arrays.stream(frase.split(" ")))
-    .distinct()
-    .collect(Collectors.toList());
-// Resultado: [Hola, mundo, Adiós]
 ```
 
-## 16) ¿Qué es el Stream pipelining en Java 8?
-
-El Stream pipelining es una técnica de procesamiento de datos donde múltiples operaciones se encadenan formando una tubería (pipeline). Consiste en una fuente, cero o más operaciones intermedias y una operación terminal.
-
-Características:
-
-- Evaluación perezosa: Las operaciones intermedias no se evalúan hasta que se ejecuta una operación terminal
-- Fusión (fusion): Múltiples operaciones se combinan para mejorar rendimiento
-- Procesamiento paso a paso: Cada elemento recorre el pipeline completo antes de procesar el siguiente
-
-Ejemplo de pipeline:
-```java
-double promedioPrecio = productos.stream()    // Fuente
-    .filter(p -> p.getCategoria().equals("Electrónica"))  // Intermedia
-    .mapToDouble(Producto::getPrecio)                     // Intermedia
-    .average()                                            // Terminal
-    .orElse(0.0);
-
-// El pipeline no se ejecuta hasta llegar a average()
-// Cada producto pasa por filter y luego por mapToDouble antes de pasar al siguiente
-```
-
-## 17) Hable sobre la nueva API de Fecha y Hora en Java 8
-
-Java 8 introdujo una nueva API de fecha y hora en el paquete `java.time` para resolver problemas de las clases antiguas (Date, Calendar).
-
-Características principales:
+## 15) ¿Qué ventajas ofrece la nueva API de Fecha y Hora en Java 8?
 
 - Inmutable y thread-safe
 - Más intuitiva y consistente
 - Mejor soporte para zonas horarias
-- Separación clara de conceptos (fecha, hora, fecha-hora)
+- Separación clara de conceptos
 - Mayor precisión (nanosegundos)
 
-Clases principales:
-
-- `LocalDate`: Solo fecha (sin hora ni zona horaria)
-- `LocalTime`: Solo hora (sin fecha ni zona horaria)
-- `LocalDateTime`: Fecha y hora (sin zona horaria)
-- `ZonedDateTime`: Fecha y hora con zona horaria
-- `Instant`: Punto específico en la línea temporal
-- `Duration`: Cantidad de tiempo (segundos, nanosegundos)
-- `Period`: Cantidad de tiempo (años, meses, días)
-- `DateTimeFormatter`: Formateo y análisis de fechas
-
-Ejemplo:
 ```java
-// Crear fechas
-LocalDate hoy = LocalDate.now();
-LocalDate cumpleaños = LocalDate.of(2023, Month.JANUARY, 15);
+// Fecha actual
+LocalDate hoy = LocalDate.now();  // 2023-09-10
 
-// Crear horas
-LocalTime ahora = LocalTime.now();
-LocalTime mediodía = LocalTime.of(12, 0);
+// Hora actual
+LocalTime ahora = LocalTime.now();  // 15:30:45.123
 
 // Fecha y hora
-LocalDateTime fechaHoraActual = LocalDateTime.now();
-LocalDateTime evento = LocalDateTime.of(2023, Month.DECEMBER, 24, 20, 0);
+LocalDateTime fechaHora = LocalDateTime.now();
 
 // Con zona horaria
-ZonedDateTime aquíAhora = ZonedDateTime.now();
-ZonedDateTime tokio = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
+ZonedDateTime zonaHora = ZonedDateTime.now(ZoneId.of("Europe/Madrid"));
 
-// Manipulación (inmutable - devuelve nuevas instancias)
+// Manipulación (inmutable)
 LocalDate mañana = hoy.plusDays(1);
-LocalDate semanaPasada = hoy.minusWeeks(1);
 LocalDate primerDíaMes = hoy.withDayOfMonth(1);
 
 // Formateo
 DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-String fechaFormateada = hoy.format(formato);
+String fechaFormateada = hoy.format(formato);  // "10/09/2023"
+```
 
-// Parsing
-LocalDate fechaParseada = LocalDate.parse("15/01/2023", formato);
+## 16) ¿Qué es la programación funcional?
 
-// Cálculos
-Period periodo = Period.between(cumpleaños, hoy);
-int años = periodo.getYears();
+Paradigma de programación donde las funciones son ciudadanas de primera clase y los programas se construyen componiendo funciones puras sin efectos secundarios.
+
+Características en Java 8:
+- Funciones como objetos (lambdas)
+- Inmutabilidad (evitar cambios de estado)
+- Operaciones de orden superior (funciones que operan sobre otras funciones)
+- Evaluación perezosa (streams)
+- Procesamiento de colecciones mediante operaciones funcionales
+
+Beneficios:
+- Código más conciso y expresivo
+- Menos errores por estado mutable
+- Mejor paralelización
+- Mayor capacidad de composición
+
+## 17) ¿Qué son las operaciones terminales y qué hacen?
+
+Las operaciones terminales son las que cierran un Stream y devuelven un resultado. Marcan el final del procesamiento y desencadenan la ejecución de todas las operaciones intermedias pendientes.
+
+Operaciones terminales comunes:
+- `collect()`: Acumula elementos en una colección
+- `forEach()`: Ejecuta una acción para cada elemento
+- `reduce()`: Combina elementos en un único resultado
+- `count()`: Cuenta elementos
+- `min()/max()`: Encuentra el valor mínimo/máximo
+- `anyMatch()/allMatch()/noneMatch()`: Comprueba condiciones
+
+```java
+// Ejemplos de operaciones terminales
+long cantidad = stream.count();
+Optional<Persona> masJoven = personas.stream().min(Comparator.comparing(Persona::getEdad));
+boolean todosMayores = personas.stream().allMatch(p -> p.getEdad() >= 18);
+int suma = numeros.stream().reduce(0, Integer::sum);
+```
+
+## 18) Recolecte elementos de un Stream en una Lista usando el método toList()
+
+```java
+// Java 8
+List<Integer> numeros = Stream.of(1, 2, 3)
+    .collect(Collectors.toList());
+
+// Java 16+
+List<Integer> numeros = Stream.of(1, 2, 3)
+    .toList();  // Método más corto en versiones recientes
+```
+
+## 19) Determine el número de elementos en un Stream
+
+```java
+// Crear un Stream
+Stream<String> stream = Stream.of("a", "b", "c", "d", "e");
+
+// Contar elementos
+long cantidad = stream.count();
+System.out.println("Número de elementos: " + cantidad);  // 5
+```
+
+## 20) ¿Para qué se usa la palabra clave random?
+
+En Java 8, la palabra `random` no es una palabra clave como tal, pero hay varios métodos y clases para generar valores aleatorios:
+
+```java
+// Usando Random
+Random random = new Random();
+int numAleatorio = random.nextInt(100);  // 0-99
+
+// Usando ThreadLocalRandom (Java 7+)
+int aleatorio = ThreadLocalRandom.current().nextInt(1, 101);  // 1-100
+
+// Usando streams de números aleatorios (Java 8)
+IntStream numerosAleatorios = random.ints(5, 1, 100);  // 5 números entre 1-99
+numerosAleatorios.forEach(System.out::println);
+```
+
+## 21) ¿Qué es un Supplier?
+
+Un `Supplier<T>` es una interfaz funcional que no recibe argumentos y produce un resultado de tipo T. Se usa cuando queremos retrasar la creación de un objeto o la evaluación de una expresión.
+
+```java
+// Definición
+@FunctionalInterface
+public interface Supplier<T> {
+    T get();
+}
+
+// Ejemplos
+Supplier<Double> aleatorio = () -> Math.random();
+Supplier<LocalDate> hoy = LocalDate::now;
+Supplier<List<String>> listaVacía = ArrayList::new;
+
+// Uso
+Double valor = aleatorio.get();  // Obtiene un número aleatorio
+List<String> lista = listaVacía.get();  // Crea una nueva lista
+```
+
+## 22) ¿Qué es un Consumer?
+
+Un `Consumer<T>` es una interfaz funcional que acepta un argumento de tipo T y no devuelve nada. Utilizado para realizar operaciones o acciones en un objeto.
+
+```java
+// Definición
+@FunctionalInterface
+public interface Consumer<T> {
+    void accept(T t);
+}
+
+// Ejemplos
+Consumer<String> imprimir = System.out::println;
+Consumer<List<String>> agregarItem = lista -> lista.add("Nuevo");
+Consumer<Integer> procesarYMostrar = n -> {
+    int resultado = n * 2;
+    System.out.println("El doble es: " + resultado);
+};
+
+// Uso
+imprimir.accept("Hola mundo");  // Imprime "Hola mundo"
+List<String> items = new ArrayList<>();
+agregarItem.accept(items);  // Agrega "Nuevo" a la lista
+```
+
+## 23) ¿Cuál es la sintaxis para una interfaz Predicate?
+
+Un `Predicate<T>` es una interfaz funcional que acepta un argumento de tipo T y devuelve un boolean. Se usa para filtrar o comprobar condiciones.
+
+```java
+// Definición
+@FunctionalInterface
+public interface Predicate<T> {
+    boolean test(T t);
+}
+
+// Ejemplos
+Predicate<String> esVacio = String::isEmpty;
+Predicate<Integer> esPar = n -> n % 2 == 0;
+Predicate<Persona> esMayor = p -> p.getEdad() >= 18;
+
+// Uso
+boolean resultado = esPar.test(4);  // true
+List<Integer> pares = numeros.stream()
+    .filter(esPar)
+    .collect(Collectors.toList());
+```
+
+## 24) ¿Qué es la programación funcional?
+
+La programación funcional es un paradigma donde los programas se construyen aplicando y componiendo funciones. Características principales:
+
+- Funciones como "ciudadanos de primera clase"
+- Inmutabilidad (evitar cambios de estado)
+- Ausencia de efectos secundarios
+- Transparencia referencial (mismo resultado para misma entrada)
+- Funciones puras (no dependen de estado externo)
+
+Ventajas en Java:
+- Código más conciso y declarativo
+- Mejor manejo de concurrencia
+- Reducción de errores por estado mutable
+- Mayor facilidad para pruebas
+- Mejor paralelización
+
+```java
+// Ejemplo de estilo imperativo
+List<Integer> duplicados = new ArrayList<>();
+for(Integer n : numeros) {
+    if(n % 2 == 0) {
+        duplicados.add(n * 2);
+    }
+}
+
+// Ejemplo de estilo funcional
+List<Integer> duplicados = numeros.stream()
+    .filter(n -> n % 2 == 0)
+    .map(n -> n * 2)
+    .collect(Collectors.toList());
 ```
