@@ -3,6 +3,7 @@
 ## Fundamentos de Programación Reactiva
 
 ### 1. ¿Qué es la programación reactiva y cuáles son sus principios?
+
 La programación reactiva es un paradigma declarativo centrado en el trabajo con flujos de datos asíncronos y la propagación de cambios. Sus principios fundamentales son:
 
 - **Responsive**: El sistema responde de manera oportuna.
@@ -13,9 +14,11 @@ La programación reactiva es un paradigma declarativo centrado en el trabajo con
 La implementación se basa en el patrón Observer, donde los consumidores reaccionan a los datos a medida que son emitidos por los productores, en lugar de solicitarlos.
 
 ### 2. ¿Qué es el manifiesto reactivo?
+
 El Manifiesto Reactivo es un documento que establece los principios de los sistemas reactivos. Define que los sistemas reactivos deben ser responsivos, resilientes, elásticos y orientados a mensajes. Fue creado por Jonas Bonér, Dave Farley, Roland Kuhn y Martin Thompson en 2013, y ha sido firmado por numerosas organizaciones para promover este enfoque de desarrollo de software.
 
 ### 3. ¿Qué es Reactive Streams y cómo se implementa en Java?
+
 Reactive Streams es una iniciativa para proporcionar un estándar para el procesamiento asíncrono de flujos de datos con contrapresión (backpressure). En Java, se implementa a través de las interfaces:
 
 - `Publisher<T>`: Fuente de datos que emite elementos.
@@ -24,12 +27,14 @@ Reactive Streams es una iniciativa para proporcionar un estándar para el proces
 - `Processor<T,R>`: Combina Publisher y Subscriber, para transformaciones.
 
 Las implementaciones más populares en Java son:
+
 - Project Reactor (usado por Spring WebFlux)
 - RxJava
 - Akka Streams
 - Java 9 Flow API
 
 ### 4. ¿Qué es la contrapresión (backpressure) y por qué es importante?
+
 La contrapresión es un mecanismo que permite a un consumidor controlar cuántos elementos puede procesar, evitando ser sobrecargado por un productor que emite datos demasiado rápido. Es esencial para sistemas reactivos porque:
 
 1. Previene desbordamientos de memoria (OutOfMemoryError)
@@ -42,6 +47,7 @@ En Reactive Streams, el Subscriber puede solicitar N elementos mediante `subscri
 ## Spring WebFlux
 
 ### 5. ¿Qué es Spring WebFlux y en qué se diferencia de Spring MVC?
+
 Spring WebFlux es un framework web reactivo no bloqueante que forma parte de Spring 5+. Sus principales diferencias con Spring MVC son:
 
 | Spring MVC | Spring WebFlux |
@@ -56,6 +62,7 @@ Spring WebFlux es un framework web reactivo no bloqueante que forma parte de Spr
 WebFlux es ideal para aplicaciones con alto throughput y operaciones intensivas de E/S, mientras que MVC es más simple para aplicaciones CRUD estándar.
 
 ### 6. ¿Cuándo deberías usar WebFlux en lugar de Spring MVC?
+
 Deberías considerar usar WebFlux cuando:
 
 - Tu aplicación requiere manejar muchas conexiones concurrentes (miles)
@@ -66,6 +73,7 @@ Deberías considerar usar WebFlux cuando:
 - Trabajas con microservicios que se comunican de forma asíncrona
 
 No es recomendable cuando:
+
 - Tu equipo no está familiarizado con programación reactiva
 - Usas bibliotecas o APIs bloqueantes
 - Necesitas integrar con sistemas que no tienen soporte reactivo
@@ -73,6 +81,7 @@ No es recomendable cuando:
 - No hay necesidad de alto throughput o gran concurrencia
 
 ### 7. ¿Cómo se configuran las rutas en WebFlux usando el enfoque funcional?
+
 WebFlux ofrece un enfoque funcional para definir rutas usando `RouterFunction` y `HandlerFunction`:
 
 ```java
@@ -107,6 +116,7 @@ public class UsuarioHandler {
 Este enfoque separa claramente el enrutamiento de la lógica de manipulación, permitiendo un código más declarativo y componible.
 
 ### 8. ¿Qué son los controladores reactivos en WebFlux y cómo se implementan?
+
 Los controladores reactivos en WebFlux son similares a los controladores de Spring MVC, pero devuelven tipos reactivos (`Mono<T>` o `Flux<T>`). Se implementan usando la anotación `@RestController`:
 
 ```java
@@ -144,6 +154,7 @@ Los controladores reactivos procesan las solicitudes de forma no bloqueante, per
 ## Mono y Flux
 
 ### 9. ¿Qué son Mono y Flux en Project Reactor?
+
 `Mono` y `Flux` son las implementaciones principales de `Publisher` en Project Reactor:
 
 - **Mono<T>**: Representa una secuencia asíncrona de 0 o 1 elemento. Equivalente reactivo a `CompletableFuture<T>` o `Optional<T>`.
@@ -160,9 +171,11 @@ Flux<Usuario> usuariosFlux = repositorio.findAll();
 ```
 
 ### 10. ¿Cuáles son los principales operadores de Mono y Flux y para qué se utilizan?
+
 Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
 
 **Operadores de Transformación**:
+
 - **map**: Transforma cada elemento aplicando una función que devuelve un nuevo valor.
   ```java
   Flux<String> nombres = usuariosFlux.map(Usuario::getNombre);
@@ -188,6 +201,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 **Operadores de Filtrado**:
+
 - **filter**: Incluye solo los elementos que cumplen con el predicado dado.
   ```java
   Flux<Usuario> adultos = usuarios.filter(u -> u.getEdad() >= 18);
@@ -209,6 +223,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 **Operadores de Combinación**:
+
 - **zip**: Combina elementos de múltiples Publishers emparejándolos por posición.
   ```java
   Flux<UsuarioConEstadistica> combinado = Flux.zip(
@@ -227,6 +242,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 **Operadores de Reducción**:
+
 - **reduce**: Combina todos los elementos en un único valor aplicando una función acumuladora.
   ```java
   Mono<Integer> suma = numeros.reduce(0, (acumulado, actual) -> acumulado + actual);
@@ -248,6 +264,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 **Manejo de errores**:
+
 - **onErrorReturn**: Sustituye el error con un valor predeterminado y completa el flujo.
   ```java
   Mono<Usuario> usuario = repository.findById(id)
@@ -266,6 +283,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 **Contexto y Threading**:
+
 - **publishOn**: Cambia el Scheduler donde los operadores subsiguientes se ejecutarán.
   ```java
   Flux<Data> datos = repository.findAll()
@@ -280,6 +298,7 @@ Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:
   ```
 
 ### 11. ¿Cómo se maneja la suscripción en Reactor y qué ocurre si no te suscribes?
+
 En Reactor, la suscripción es el desencadenante que inicia el flujo de datos desde el `Publisher` hacia el `Subscriber`. Sin suscripción, nada ocurre (lazy evaluation).
 
 Una suscripción completa incluye tres callbacks:
@@ -292,6 +311,7 @@ flux.subscribe(
 ```
 
 Si no te suscribes:
+
 1. No se ejecuta ninguna operación
 2. No se emiten datos
 3. No se generan efectos secundarios
@@ -299,6 +319,7 @@ Si no te suscribes:
 Esto se conoce como "ensamblaje vs ejecución" - puedes construir un flujo complejo sin ejecutarlo hasta la suscripción.
 
 ### 12. ¿Cómo se manejan los errores en programación reactiva con Reactor?
+
 Reactor ofrece varios operadores para manejar errores de forma declarativa:
 
 - **onErrorReturn**: Proporciona un valor por defecto en caso de error
@@ -336,9 +357,11 @@ Los errores en programación reactiva siguen el principio de "fail-fast" y termi
 ## WebClient y WebTestClient
 
 ### 13. ¿Qué es WebClient y cómo se utiliza para consumir APIs?
+
 WebClient es el cliente HTTP reactivo de Spring WebFlux, diseñado para realizar peticiones de forma no bloqueante. Reemplaza al antiguo RestTemplate con un enfoque reactivo.
 
 Características principales:
+
 - No bloqueante y reactivo
 - Fluent API para configuración y peticiones
 - Soporte para codificación/decodificación de objetos
@@ -371,6 +394,7 @@ Mono<Usuario> usuarioDetallado = webClient.get()
 ```
 
 ### 14. ¿Cuáles son las ventajas de usar WebClient sobre RestTemplate?
+
 WebClient ofrece varias ventajas sobre RestTemplate:
 
 1. **Modelo no bloqueante**: Utiliza menos hilos para manejar más peticiones.
@@ -395,9 +419,11 @@ Mono<Usuario> usuarioMono = webClient.get()
 ```
 
 ### 15. ¿Qué es WebTestClient y cómo se utiliza para probar endpoints reactivos?
+
 WebTestClient es una herramienta especializada para probar aplicaciones WebFlux, proporcionando una API fluida para realizar y verificar solicitudes HTTP. Puede trabajar contra servidores reales, controladores Spring WebFlux o funciones de enrutamiento.
 
 Características:
+
 - API fluida similar a WebClient
 - Aserciones específicas para pruebas
 - Soporte para verificar respuestas reactivas
@@ -460,9 +486,11 @@ class UsuarioControllerTest {
 ```
 
 ### 16. ¿Cómo se manejan las pruebas de integración en aplicaciones WebFlux?
+
 Las pruebas de integración en WebFlux utilizan `WebTestClient` con un enfoque más completo:
 
 1. **Configuración de prueba**:
+
 ```java
 @SpringBootTest
 @AutoConfigureWebTestClient
@@ -476,6 +504,7 @@ class ApiIntegrationTest {
 ```
 
 2. **Pruebas con base de datos reactiva** (ej. MongoDB reactivo):
+
 ```java
 @DataMongoTest
 @Import(UsuarioRepositoryImpl.class)
@@ -500,6 +529,7 @@ class UsuarioRepositoryTest {
 ```
 
 3. **Pruebas de flujos de datos reactivos con StepVerifier**:
+
 ```java
 @Test
 void testStreamingEndpoint() {
@@ -520,6 +550,7 @@ void testStreamingEndpoint() {
 ```
 
 4. **Pruebas de WebSockets**:
+
 ```java
 @Test
 void testWebSocketEndpoint() {
@@ -547,6 +578,7 @@ void testWebSocketEndpoint() {
 ## Desventajas y Consideraciones
 
 ### 17. ¿Cuáles son las desventajas de usar Reactive Streams?
+
 A pesar de sus beneficios, la programación reactiva tiene varias desventajas:
 
 1. **Curva de aprendizaje pronunciada**: El paradigma reactivo requiere cambiar la forma de pensar.
@@ -576,6 +608,7 @@ Mono<List<Usuario>> activosMono = usuariosFlux
 ```
 
 ### 18. ¿Cuándo NO deberías usar programación reactiva?
+
 No deberías usar programación reactiva en estos escenarios:
 
 1. **Aplicaciones CRUD simples**: Las aplicaciones con operaciones simples de base de datos sin necesidad de alta concurrencia.
@@ -588,9 +621,11 @@ No deberías usar programación reactiva en estos escenarios:
 8. **Aplicaciones batch o de procesamiento por lotes**: Donde el procesamiento secuencial es más apropiado.
 
 ### 19. ¿Cómo afecta la programación reactiva al rendimiento y consumo de recursos?
+
 La programación reactiva puede tener diferentes impactos en el rendimiento:
 
 **Beneficios**:
+
 - **Mejor uso de CPU**: Menos hilos pueden manejar más solicitudes.
 - **Mayor throughput**: Puede procesar más solicitudes por segundo.
 - **Mejor manejo de concurrencia**: Sin bloqueos de hilos para operaciones de E/S.
@@ -598,17 +633,20 @@ La programación reactiva puede tener diferentes impactos en el rendimiento:
 - **Menor sobrecarga de contexto**: Menos cambios de contexto entre hilos.
 
 **Consideraciones**:
+
 - **Overhead inicial**: Mayor uso de memoria para estructuras reactivas.
 - **Presión en GC**: Más objetos temporales pueden aumentar la actividad del recolector de basura.
 - **Complejidad de optimización**: Más difícil de perfilar y optimizar.
 - **Rendimiento vs. complejidad**: El beneficio debe justificar la complejidad adicional.
 
 Comparativa de rendimiento:
+
 - Con **pocas conexiones simultáneas** (< 100): Spring MVC puede ser más eficiente.
 - Con **muchas conexiones simultáneas** (> 1000): WebFlux suele ofrecer mejor rendimiento.
 - Con **operaciones bloqueantes**: WebFlux puede degradarse significativamente.
 
 ### 20. ¿Cómo se integra la seguridad en aplicaciones WebFlux?
+
 Spring Security se integra con WebFlux a través de un modelo reactivo:
 
 ```java
