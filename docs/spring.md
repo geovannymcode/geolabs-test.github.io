@@ -2,10 +2,10 @@
 
 ## Fundamentos de Java
 
-### 1. ¿Qué diferencias hay entre una *interfaz* y una clase *abstracta* en Java?
-Una *interfaz* define un contrato que las clases deben implementar, mientras que una clase *abstracta* puede contener implementación parcial. Desde Java 8, las interfaces también pueden tener métodos con implementación (`default`). Sin embargo, una clase solo puede extender una clase abstracta, pero puede implementar múltiples interfaces.
+### 1. ¿Qué diferencias hay entre una **interfaz** y una clase **abstracta** en Java?
+Una **interfaz** define un contrato que las clases deben implementar, mientras que una clase **abstracta** puede contener implementación parcial. Desde Java 8, las interfaces también pueden tener métodos con implementación (`default`). Sin embargo, una clase solo puede extender una clase abstracta, pero puede implementar múltiples interfaces.
 
-### 2. ¿Qué significa que Java tenga *"pass-by-value"*?
+### 2. ¿Qué significa que Java tenga **"pass-by-value"**?
 En Java, todo se pasa por valor. Para tipos primitivos se pasa una copia del valor. Para objetos, se pasa una copia de la referencia, lo que significa que puedes modificar el objeto referenciado, pero no cambiar la referencia original.
 
 ### 3. ¿Qué diferencia hay entre == y .equals() en Java?
