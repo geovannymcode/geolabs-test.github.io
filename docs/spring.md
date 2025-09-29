@@ -11,15 +11,15 @@ En Java, todo se pasa por valor. Para tipos primitivos se pasa una copia del val
 ### 3. ¿Qué diferencia hay entre == y .equals() en Java?
 `==` compara referencias (si apuntan al mismo objeto). `.equals()` compara el contenido del objeto. Por ejemplo, dos String diferentes pueden tener el mismo contenido, pero estar en posiciones distintas de memoria.
 
-### 4. ¿Qué es el heap y la stack en la memoria de Java?
+### 4. ¿Qué es el **heap** y la **stack** en la memoria de Java?
 - **Stack**: Almacena variables locales y llamadas a métodos.
 - **Heap**: Almacena objetos creados con `new`.
 - El recolector de basura (GC) limpia el heap cuando ya no hay referencias.
 
-### 5. ¿Para qué sirve final en clases, métodos o variables?
-- En variables: Impide su modificación.
-- En métodos: No se pueden sobrescribir.
-- En clases: No se pueden heredar.
+### 5. ¿Para qué sirve **final** en **clases**, **métodos** o **variables**?
+- **En variables**: Impide su modificación.
+- **En métodos**: No se pueden sobrescribir.
+- **En clases**: No se pueden heredar.
 
 ## Programación Orientada a Objetos (POO)
 
