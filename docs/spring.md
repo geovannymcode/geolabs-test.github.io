@@ -8,7 +8,7 @@ Una **interfaz** define un contrato que las clases deben implementar, mientras q
 ### 2. ¿Qué significa que Java tenga **"pass-by-value"**?
 En Java, todo se pasa por valor. Para tipos primitivos se pasa una copia del valor. Para objetos, se pasa una copia de la referencia, lo que significa que puedes modificar el objeto referenciado, pero no cambiar la referencia original.
 
-### 3. ¿Qué diferencia hay entre == y .equals() en Java?
+### 3. ¿Qué diferencia hay entre **==** y **.equals()** en Java?
 `==` compara referencias (si apuntan al mismo objeto). `.equals()` compara el contenido del objeto. Por ejemplo, dos String diferentes pueden tener el mismo contenido, pero estar en posiciones distintas de memoria.
 
 ### 4. ¿Qué es el **heap** y la **stack** en la memoria de Java?
@@ -23,21 +23,21 @@ En Java, todo se pasa por valor. Para tipos primitivos se pasa una copia del val
 
 ## Programación Orientada a Objetos (POO)
 
-### 6. ¿Qué es el principio de inversión de dependencias (DIP)?
+### 6. ¿Qué es el principio de **inversión de dependencias** (DIP)?
 Establece que las clases de alto nivel no deben depender de clases de bajo nivel, sino de abstracciones. También, las abstracciones no deben depender de detalles, sino los detalles de las abstracciones. Se logra mediante interfaces e inyección de dependencias.
 
-### 7. ¿Cómo aplicas la herencia y la composición? ¿Cuándo usarías cada una?
+### 7. ¿Cómo aplicas la **herencia** y la **composición**? ¿Cuándo usarías cada una?
 - **Herencia**: Relación "es-un" (`Perro extends Animal`).
 - **Composición**: Relación "tiene-un" (`Coche` tiene un `Motor`).
 - La composición es más flexible y favorece el bajo acoplamiento.
 
-### 8. ¿Qué es el polimorfismo en Java?
+### 8. ¿Qué es el **polimorfismo** en Java?
 Es la capacidad de usar objetos de diferentes clases a través de una referencia común. Por ejemplo, un método que acepta un parámetro de tipo `Animal` puede trabajar con `Perro`, `Gato`, etc.
 
-### 9. ¿Se puede sobrescribir (override) un método estático?
+### 9. ¿Se puede sobrescribir **(override)** un método estático?
 No. Los métodos estáticos pertenecen a la clase, no a la instancia. No pueden sobrescribirse, solo ocultarse (hiding).
 
-### 10. ¿Qué es super y this?
+### 10. ¿Qué es **super** y **this**?
 
 - **this**: Se refiere a la instancia actual.
 - **super**: Se usa para acceder a la clase padre (por ejemplo, su constructor o métodos).
