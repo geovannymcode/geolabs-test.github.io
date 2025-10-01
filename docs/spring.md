@@ -27,8 +27,8 @@ En Java, todo se pasa por valor. Para tipos primitivos se pasa una copia del val
 Establece que las clases de alto nivel no deben depender de clases de bajo nivel, sino de abstracciones. También, las abstracciones no deben depender de detalles, sino los detalles de las abstracciones. Se logra mediante interfaces e inyección de dependencias.
 
 ### 7. ¿Cómo aplicas la **herencia** y la **composición**? ¿Cuándo usarías cada una?
-- **Herencia**: Relación "es-un" (`Perro extends Animal`).
-- **Composición**: Relación "tiene-un" (`Coche` tiene un `Motor`).
+- **Herencia**: Relación ***"es-un"*** (`Perro extends Animal`).
+- **Composición**: Relación ***"tiene-un"*** (`Coche` tiene un `Motor`).
 - La composición es más flexible y favorece el bajo acoplamiento.
 
 ### 8. ¿Qué es el **polimorfismo** en Java?
@@ -44,13 +44,13 @@ No. Los métodos estáticos pertenecen a la clase, no a la instancia. No pueden 
 
 ## Colecciones y Streams
 
-### 11. ¿Cuál es la diferencia entre List, Set y Map?
+### 11. ¿Cuál es la diferencia entre **List**, **Set** y **Map**?
 
 - **List**: Mantiene orden, permite duplicados.
 - **Set**: No permite duplicados, puede no mantener orden.
 - **Map**: Almacena pares clave-valor, no permite claves duplicadas.
 
-### 12. ¿Para qué sirve Optional en Java?
+### 12. ¿Para qué sirve **Optional** en Java?
 Es una forma segura de representar valores que pueden estar presentes o no. Ayuda a evitar `NullPointerException`.
 
 ### 13. ¿Qué hace este fragmento de código?
@@ -69,7 +69,7 @@ CARLOS
 
 ## Manejo de Errores
 
-### 14. ¿Cuál es la diferencia entre throw y throws?
+### 14. ¿Cuál es la diferencia entre **throw** y **throws**?
 
 - **throw**: Lanza una excepción.
 - **throws**: Declara que un método puede lanzar una excepción (checked).
