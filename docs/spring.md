@@ -74,7 +74,7 @@ CARLOS
 - **throw**: Lanza una excepción.
 - **throws**: Declara que un método puede lanzar una excepción (checked).
 
-### 15. ¿Qué son las excepciones checked y unchecked?
+### 15. ¿Qué son las excepciones **checked** y **unchecked**?
 
 - **Checked**: Deben capturarse o declararse (ej. `IOException`).
 - **Unchecked**: No es obligatorio capturarlas (`NullPointerException`, `IllegalArgumentException`, etc.).
@@ -96,16 +96,16 @@ HttpRequest request = HttpRequest.newBuilder()
 HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
 ```
 
-### 18. ¿Cómo convertir un objeto a JSON y viceversa?
+### 18. ¿Cómo convertir un objeto a **JSON** y viceversa?
 
-Usando Jackson y ObjectMapper:
+Usando **Jackson** y **ObjectMapper**:
 ```java
 ObjectMapper mapper = new ObjectMapper();
 String json = mapper.writeValueAsString(obj);
 MiClase nuevo = mapper.readValue(json, MiClase.class);
 ```
 
-### 19. ¿Cuál es la diferencia entre synchronized, ExecutorService y parallelStream()?
+### 19. ¿Cuál es la diferencia entre **synchronized**, **ExecutorService** y **parallelStream()**?
 
 - **synchronized**: Control de acceso exclusivo a secciones críticas.
 - **ExecutorService**: Gestión avanzada de hilos y tareas.
