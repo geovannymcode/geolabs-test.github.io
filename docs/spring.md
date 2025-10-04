@@ -623,23 +623,23 @@ Usando objetos `ResponseEntity<T>` que permiten controlar el cuerpo de la respue
 
 Usando `@Valid` o `@Validated` en el parámetro del método del controlador. Spring valida automáticamente los atributos anotados con `@NotNull`, `@Size`, `@Email`, etc., y lanza una excepción si no se cumplen.
 
-### 46. ¿Cómo se personaliza el mensaje de error de una validación?
+### 46. ¿Cómo se personaliza el **mensaje de error de una validación**?
 
 Se puede usar el atributo message en la anotación, por ejemplo: `@NotNull(message = "El nombre es obligatorio")`. También se pueden usar ficheros `.properties` para externalizar los mensajes.
 
-### 47. ¿Qué diferencia hay entre @Valid y @Validated?
+### 47. ¿Qué diferencia hay entre **@Valid** y **@Validated**?
 
 `@Valid` es de Javax y se usa principalmente en controladores. `@Validated` es de Spring y permite validaciones por grupos o validaciones a nivel de servicio, no solo en controladores.
 
-### 48. ¿Cómo se gestionan los errores de validación?
+### 48. ¿Cómo se gestionan los **errores** de validación?
 
 Spring lanza una excepción (`MethodArgumentNotValidException`) que se puede capturar con `@ControllerAdvice` y un método con `@ExceptionHandler`.
 
 ## Testing en Spring Boot Web
 
-### 49. ¿Qué hace @WebMvcTest?
+### 49. ¿Qué hace **@WebMvcTest**?
 
-Carga solo el contexto relacionado con Spring MVC (controladores, filtros, validaciones), ignorando servicios, repositorios y demás beans. Ideal para pruebas unitarias de controladores.
+Carga solo el contexto relacionado con **Spring MVC (controladores, filtros, validaciones)**, ignorando servicios, repositorios y demás beans. Ideal para pruebas unitarias de controladores.
 
 ### 50. ¿Qué herramienta se usa para simular peticiones HTTP?
 
@@ -651,17 +651,17 @@ Carga solo el contexto relacionado con Spring MVC (controladores, filtros, valid
 
 ## Mapeo entre capas (DTOs, entidades y modelos)
 
-### 52. ¿Qué es un DTO y por qué se usa?
+### 52. ¿Qué es un **DTO** y por qué se usa?
 
 Un DTO (Data Transfer Object) es un objeto diseñado para intercambiar datos entre capas, evitando exponer entidades directamente. Mejora la seguridad y desacopla las capas.
 
-### 53. ¿Cómo se realiza el mapeo entre entidad y DTO?
+### 53. ¿Cómo se realiza el mapeo entre **entidad** y **DTO**?
 
 Se puede hacer manualmente en un mapper (por ejemplo, un método `fromEntity()` y `toEntity()`), o automáticamente usando librerías como MapStruct o ModelMapper.
 
-### 54. ¿Qué ventajas ofrece MapStruct?
+### 54. ¿Qué ventajas ofrece **MapStruct**?
 
-MapStruct genera código en tiempo de compilación, es rápido, seguro y fácil de mantener. Reduce el boilerplate y errores comunes en el mapeo manual.
+**MapStruct** genera código en tiempo de compilación, es rápido, seguro y fácil de mantener. Reduce el boilerplate y errores comunes en el mapeo manual.
 
 ### 55. ¿Por qué no se deben exponer directamente las entidades JPA en los controladores?
 
