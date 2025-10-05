@@ -86,7 +86,7 @@ CARLOS
 - Leer: `Files.readAllLines(path)` o `Files.lines(path)`
 - Escribir: `Files.write(path, List<String>)`
 
-### 17. ¿Cómo haces una petición HTTP en Java sin usar Spring?
+### 17. ¿Cómo haces una petición **HTTP** en Java sin usar Spring?
 Con HttpClient de Java 11:
 ```java
 HttpClient client = HttpClient.newHttpClient();
@@ -115,7 +115,7 @@ MiClase nuevo = mapper.readValue(json, MiClase.class);
 
 ### 20. ¿Qué tipo de test harías para asegurar que un controlador devuelve correctamente un código 200?
 
-Test de integración con MockMvc o WebTestClient, validando el status, contenido y cabeceras.
+Test de integración con ***MockMvc*** o ***WebTestClient***, validando el ***status***, ***contenido*** y ***cabeceras***.
 
 ### 21. ¿Qué patrones de diseño conoces y cuáles has usado en tus proyectos?
 
@@ -503,19 +503,19 @@ class ServicioUsuario {
 
 ## Java Moderno
 
-### 22. ¿Qué diferencias hay entre Array y ArrayList?
+### 22. ¿Qué diferencias hay entre **Array** y **ArrayList**?
 
 - **Array**: Tamaño fijo, puede contener tipos primitivos.
 - **ArrayList**: Tamaño dinámico, solo objetos, ofrece métodos como `add()`, `remove()`.
 
-### 23. ¿Qué es var en Java?
+### 23. ¿Qué es **var** en Java?
 
 Desde Java 10, permite inferencia de tipo local. El tipo es estático y se infiere en tiempo de compilación:
 ```java
 var lista = new ArrayList<String>();
 ```
 
-### 24. ¿Qué es un enum y cuándo se usa?
+### 24. ¿Qué es un **enum** y cuándo se usa?
 
 Un enum representa un conjunto fijo de constantes. Útil para modelar categorías o estados como `DIA`, `NOCHE`, `ESTADO.ACTIVO`.
 
