@@ -533,13 +533,13 @@ Java deduce el tipo de parámetros en funciones lambda automáticamente:
 lista.forEach(item -> System.out.println(item));
 ```
 
-### 27. ¿Para qué se usa el patrón Builder?
+### 27. ¿Para qué se usa el patrón **Builder**?
 
 Para construir objetos complejos paso a paso, evitando constructores con muchos parámetros y mejorando la legibilidad.
 
 ## Fundamentos de Spring Boot
 
-### 28. ¿Qué diferencia hay entre @Component, @Service, @Repository y @Controller?
+### 28. ¿Qué diferencia hay entre **@Component**, **@Service**, **@Repository** y **@Controller**?
 
 Todos son estereotipos de Spring que marcan una clase como un componente a gestionar. `@Component` es genérico, `@Service` se usa para lógica de negocio, `@Repository` para acceso a datos (además traduce excepciones automáticamente), y `@Controller` para controlar las peticiones HTTP.
 
@@ -549,7 +549,7 @@ Permite definir la configuración de la aplicación: puertos, datos de conexión
 
 ## Controladores y manejo HTTP
 
-### 30. ¿Qué diferencia hay entre @GetMapping y @RequestMapping(method = RequestMethod.GET)?
+### 30. ¿Qué diferencia hay entre **@GetMapping** y **@RequestMapping(method = RequestMethod.GET)**?
 
 `@GetMapping` es una anotación específica para simplificar `@RequestMapping(method = RequestMethod.GET)`, haciéndolo más legible. Ambas hacen lo mismo, pero `@GetMapping` es más concisa.
 
@@ -559,7 +559,7 @@ Utilizando un DTO o entidad como parámetro con `@RequestBody`. Spring deseriali
 
 ## Manejo de errores y excepciones
 
-### 32. ¿Qué es un @ControllerAdvice?
+### 32. ¿Qué es un **@ControllerAdvice**?
 
 Es una clase que maneja excepciones de manera global en todos los controladores. Permite capturar errores comunes y devolver respuestas personalizadas con `@ExceptionHandler`.
 
