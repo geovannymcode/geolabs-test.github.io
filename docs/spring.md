@@ -543,7 +543,7 @@ Para construir objetos complejos paso a paso, evitando constructores con muchos 
 
 Todos son estereotipos de Spring que marcan una clase como un componente a gestionar. `@Component` es genérico, `@Service` se usa para lógica de negocio, `@Repository` para acceso a datos (además traduce excepciones automáticamente), y `@Controller` para controlar las peticiones HTTP.
 
-### 29. ¿Qué función cumple el archivo application.properties o application.yml?
+### 29. ¿Qué función cumple el archivo **application.properties** o **application.yml**?
 
 Permite definir la configuración de la aplicación: puertos, datos de conexión, variables personalizadas, perfiles activos, propiedades de Spring, entre otros.
 
@@ -553,7 +553,7 @@ Permite definir la configuración de la aplicación: puertos, datos de conexión
 
 `@GetMapping` es una anotación específica para simplificar `@RequestMapping(method = RequestMethod.GET)`, haciéndolo más legible. Ambas hacen lo mismo, pero `@GetMapping` es más concisa.
 
-### 31. ¿Cómo puedes recibir datos de una petición POST en Spring Boot?
+### 31. ¿Cómo puedes recibir datos de una petición **POST** en Spring Boot?
 
 Utilizando un DTO o entidad como parámetro con `@RequestBody`. Spring deserializa automáticamente el cuerpo JSON en ese objeto.
 
@@ -563,7 +563,7 @@ Utilizando un DTO o entidad como parámetro con `@RequestBody`. Spring deseriali
 
 Es una clase que maneja excepciones de manera global en todos los controladores. Permite capturar errores comunes y devolver respuestas personalizadas con `@ExceptionHandler`.
 
-### 33. ¿Cómo personalizar la respuesta de error para una excepción específica?
+### 33. ¿Cómo personalizar la respuesta de **error** para una **excepción** específica?
 
 Se puede crear un método con `@ExceptionHandler(NombreDeLaExcepcion.class)` dentro de una clase anotada con `@ControllerAdvice`, y devolver un objeto con el mensaje, código de estado, etc.
 
@@ -573,7 +573,7 @@ Se puede crear un método con `@ExceptionHandler(NombreDeLaExcepcion.class)` den
 
 Se anota el método con `@Async` y se habilita el soporte con `@EnableAsync` en una clase de configuración. El método debe retornar `CompletableFuture`, `Future` o `void`.
 
-### 35. ¿Qué es @Scheduled y cómo se usa?
+### 35. ¿Qué es **@Scheduled** y cómo se usa?
 
 Permite ejecutar tareas periódicas. Se configura con expresiones cron o parámetros como `fixedRate`. Requiere `@EnableScheduling`.
 
@@ -587,17 +587,17 @@ Es una funcionalidad que configura automáticamente beans comunes en función de
 
 Es una combinación de `@Configuration`, `@EnableAutoConfiguration` y `@ComponentScan`. Marca el punto de entrada principal de la app y permite que Spring configure todo automáticamente.
 
-### 38. ¿Qué convenciones sigue Spring Boot para buscar beans?
+### 38. ¿Qué convenciones sigue Spring Boot para buscar **beans**?
 
 Spring escanea automáticamente todos los paquetes hijos del paquete donde se encuentra la clase con `@SpringBootApplication`. Si los beans están fuera de ese árbol de paquetes, no se detectarán salvo que se especifique el `@ComponentScan`.
 
-### 39. ¿Qué diferencia hay entre @Configuration y @Component?
+### 39. ¿Qué diferencia hay entre **@Configuration** y **@Component**?
 
 `@Configuration` define una clase que puede contener métodos con `@Bean`, y está pensada para la configuración de la aplicación. `@Component` es una anotación más genérica para cualquier clase que deba ser gestionada por el contenedor de Spring.
 
 ## Spring MVC y desarrollo Web
 
-### 40. ¿Qué hace el @RestController?
+### 40. ¿Qué hace el **@RestController**?
 
 Es una combinación de `@Controller` y `@ResponseBody`, lo que permite que los métodos devuelvan directamente datos (como JSON) sin necesidad de escribir `@ResponseBody` en cada uno.
 
@@ -605,11 +605,11 @@ Es una combinación de `@Controller` y `@ResponseBody`, lo que permite que los m
 
 Usando anotaciones como `@GetMapping`, `@PostMapping`, `@PutMapping`, `@DeleteMapping`, etc., encima de métodos dentro de un `@RestController`. También se pueden usar `@RequestMapping` con el método definido.
 
-### 42. ¿Cómo se accede a parámetros en la URL?
+### 42. ¿Cómo se accede a parámetros en la **URL**?
 
 Usando `@PathVariable` para capturar partes de la ruta (`/users/{id}`), o `@RequestParam` para capturar parámetros tipo query (`/search?term=x`).
 
-### 43. ¿Qué diferencia hay entre @RequestBody y @ModelAttribute?
+### 43. ¿Qué diferencia hay entre **@RequestBody** y **@ModelAttribute**?
 
 `@RequestBody` toma el cuerpo crudo de la petición (generalmente JSON) y lo deserializa en un objeto. `@ModelAttribute` toma datos del formulario o query params, útil para formularios en apps web tradicionales.
 
@@ -619,7 +619,7 @@ Usando objetos `ResponseEntity<T>` que permiten controlar el cuerpo de la respue
 
 ## Validaciones en Spring Boot
 
-### 45. ¿Cómo se activan las validaciones en un controlador de Spring Boot?
+### 45. ¿Cómo se activan las **validaciones** en un controlador de Spring Boot?
 
 Usando `@Valid` o `@Validated` en el parámetro del método del controlador. Spring valida automáticamente los atributos anotados con `@NotNull`, `@Size`, `@Email`, etc., y lanza una excepción si no se cumplen.
 
