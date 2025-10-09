@@ -40,6 +40,7 @@ Runnable r = () -> System.out.println("Ejecutando");
 ## 3) Explique la sintaxis de una expresión lambda
 
 Componentes:
+
 - **Parámetros**: Entre paréntesis (opcionales si hay un solo parámetro sin tipo)
 - **Flecha** `->`: Separa parámetros del cuerpo
 - **Cuerpo**: Expresión única o bloque de código entre llaves
@@ -84,6 +85,7 @@ new Thread(() -> System.out.println("Ejecutando hilo")).start();
 Una forma abreviada de expresión lambda que refiere a un método existente. Se usa cuando la lambda simplemente llama a un método.
 
 Tipos:
+
 - A método estático: `Math::abs`
 - A método de instancia de objeto específico: `objeto::método`
 - A método de instancia de objeto arbitrario: `String::length`
@@ -215,6 +217,7 @@ Optional<Integer> longitud = nombre.map(String::length);
 Secuencia de elementos que soporta operaciones agregadas. Permite procesamiento de datos declarativo (qué hacer, no cómo).
 
 Componentes:
+
 1. Fuente de datos (colección, array)
 2. Operaciones intermedias (transforman el stream)
 3. Operación terminal (produce resultado)
@@ -232,11 +235,13 @@ List<String> resultado = nombres.stream()        // Fuente
 ## 12) ¿Qué son las operaciones intermedias y terminales?
 
 **Operaciones intermedias**:
+
 - Devuelven un nuevo stream
 - Son perezosas (no se ejecutan hasta que haya una operación terminal)
 - Ejemplos: `filter()`, `map()`, `sorted()`, `distinct()`, `limit()`
 
 **Operaciones terminales**:
+
 - Producen un resultado o efecto secundario
 - Consumen el stream (no se puede reutilizar)
 - Ejemplos: `forEach()`, `collect()`, `reduce()`, `count()`, `anyMatch()`

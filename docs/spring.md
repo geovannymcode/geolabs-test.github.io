@@ -645,7 +645,7 @@ Carga solo el contexto relacionado con **Spring MVC (controladores, filtros, val
 
 `MockMvc` permite hacer peticiones simuladas a endpoints (`GET`, `POST`, etc.), verificar códigos de estado, cabeceras y contenido del JSON de respuesta.
 
-### 51. ¿Qué diferencia hay entre @SpringBootTest y @WebMvcTest?
+### 51. ¿Qué diferencia hay entre **@SpringBootTest** y **@WebMvcTest**?
 
 `@SpringBootTest` carga todo el contexto de Spring (ideal para tests de integración). `@WebMvcTest` solo carga el contexto web para tests de controladores.
 
@@ -653,7 +653,7 @@ Carga solo el contexto relacionado con **Spring MVC (controladores, filtros, val
 
 ### 52. ¿Qué es un **DTO** y por qué se usa?
 
-Un DTO (Data Transfer Object) es un objeto diseñado para intercambiar datos entre capas, evitando exponer entidades directamente. Mejora la seguridad y desacopla las capas.
+Un **DTO** ***(Data Transfer Object)*** es un objeto diseñado para intercambiar datos entre capas, evitando exponer entidades directamente. Mejora la seguridad y desacopla las capas.
 
 ### 53. ¿Cómo se realiza el mapeo entre **entidad** y **DTO**?
 
@@ -677,6 +677,6 @@ Una estructura por capas: `controller`, `service`, `repository`, `model` y `dto`
 
 Separación de responsabilidades, mejor mantenibilidad, testabilidad y facilidad para aplicar principios SOLID.
 
-### 58. ¿Qué es el @Service y qué hace?
+### 58. ¿Qué es el **@Service** y qué hace?
 
 Es una anotación de Spring que marca una clase como componente de negocio. Permite separar la lógica de negocio del controlador.
