@@ -487,6 +487,7 @@ La programación funcional es un paradigma donde los programas se construyen apl
 - Funciones puras (no dependen de estado externo)
 
 Ventajas en Java:
+
 - Código más conciso y declarativo
 - Mejor manejo de concurrencia
 - Reducción de errores por estado mutable
