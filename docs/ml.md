@@ -11,11 +11,13 @@ Crear una función que acepte un string como parámetro y retorne un valor boole
 - "La niña aportó otro paso natural." = false
 
 **Firma de la función:**
+
 ```java
 public static boolean verificaCapicua(String cadena)
 ```
 
 **Solución (Java con Programación Funcional):**
+
 ```java
 import java.util.stream.IntStream;
 
@@ -108,11 +110,13 @@ Completá la función braces en el editor. La función deberá devolver una list
 - Cada values consiste únicamente de los caracteres {, }, [, ], (, ).
 
 **Firma de la función:**
+
 ```java
 public static List<String> balancedBraces(List<String> braces)
 ```
 
 **Solución (Java con Programación Funcional):**
+
 ```java
 import java.util.*;
 import java.util.stream.Collectors;
@@ -247,8 +251,8 @@ if (prod.getCurrency() != oldCurrency && prod.getPrice() != oldPrice) {
 **Pregunta:** Luego de discutirlo con ella, deciden que hay oportunidades de simplificar y mejorar la mantenibilidad del código. Con este objetivo en mente, ¿qué patrón de diseño crees que podrían utilizar?
 
 **Opciones (Pick ONE):**
+
 - ✅ **Builder**
-- 
 - Composite
 - Prototype
 
