@@ -1,4 +1,4 @@
-# Examen MercadoLibre Back-End Developer
+# Examen Back-End Developer
 
 ## 1. Palindromo
 
