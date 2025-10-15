@@ -16,20 +16,33 @@ Crear una función que acepte un string como parámetro y retorne un valor boole
 public static boolean verificaCapicua(String cadena)
 ```
 
-**Solución (Java con Programación Funcional):**
+**Solución 1 (Java Tradicional/Imperativo) - RECOMENDADA:**
 
 ```java
-import java.util.stream.IntStream;
-
 public static boolean verificaCapicua(String cadena) {
-    String limpia = cadena.chars()
-        .filter(c -> Character.isLetter(c))
-        .map(Character::toLowerCase)
-        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-        .toString();
+    // Limpiar la cadena: solo letras y convertir a minúsculas
+    StringBuilder limpia = new StringBuilder();
+    for (int i = 0; i < cadena.length(); i++) {
+        char c = cadena.charAt(i);
+        if (Character.isLetter(c)) {
+            limpia.append(Character.toLowerCase(c));
+        }
+    }
     
-    return IntStream.range(0, limpia.length() / 2)
-        .allMatch(i -> limpia.charAt(i) == limpia.charAt(limpia.length() - 1 - i));
+    // Verificar si es palíndromo
+    String str = limpia.toString();
+    int izq = 0;
+    int der = str.length() - 1;
+    
+    while (izq < der) {
+        if (str.charAt(izq) != str.charAt(der)) {
+            return false;
+        }
+        izq++;
+        der--;
+    }
+    
+    return true;
 }
 ```
 
@@ -115,7 +128,61 @@ Completá la función braces en el editor. La función deberá devolver una list
 public static List<String> balancedBraces(List<String> braces)
 ```
 
-**Solución (Java con Programación Funcional):**
+**Solución 1 (Java Tradicional/Imperativo) - RECOMENDADA:**
+
+```java
+import java.util.*;
+
+public static List<String> balancedBraces(List<String> braces) {
+    List<String> result = new ArrayList<>();
+    
+    for (String str : braces) {
+        if (isBalanced(str)) {
+            result.add("YES");
+        } else {
+            result.add("NO");
+        }
+    }
+    
+    return result;
+}
+
+private static boolean isBalanced(String str) {
+    Deque<Character> stack = new ArrayDeque<>();
+    
+    for (int i = 0; i < str.length(); i++) {
+        char c = str.charAt(i);
+        
+        // Si es un paréntesis de apertura, lo agregamos a la pila
+        if (c == '(' || c == '{' || c == '[') {
+            stack.push(c);
+        } 
+        // Si es un paréntesis de cierre, verificamos que coincida
+        else if (c == ')' || c == '}' || c == ']') {
+            if (stack.isEmpty()) {
+                return false;
+            }
+            
+            char top = stack.pop();
+            
+            if (c == ')' && top != '(') {
+                return false;
+            }
+            if (c == '}' && top != '{') {
+                return false;
+            }
+            if (c == ']' && top != '[') {
+                return false;
+            }
+        }
+    }
+    
+    // Al final, la pila debe estar vacía
+    return stack.isEmpty();
+}
+```
+
+**Solución 2 (Java con Programación Funcional) - ALTERNATIVA:**
 
 ```java
 import java.util.*;
@@ -512,7 +579,7 @@ public int sum(int a, int b) {
 
 ## 25. SQL KYC Levels
 
-**Contexto:** La tabla `user_level` guarda información histórica de los niveles alcanzados de experiencia (mensual/compras) de nuestros usuarios dentro de Mercado Libre.
+**Contexto:** La tabla `user_level` guarda información histórica de los niveles alcanzados de experiencia (mensual/compras) de nuestros usuarios dentro de Empresa.
 
 La tabla está constituida por las columnas:
 
