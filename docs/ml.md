@@ -6,6 +6,7 @@
 Crear una función que acepte un string como parámetro y retorne un valor booleano indicando si el string puede considerarse como un palíndromo o no. El palíndromo no se lee igual que de derecha a izquierda (es cíclico). No tener en cuenta los espacios, ni números, ni los siguientes caracteres especiales: ".", ",", "!"
 
 **Ejemplo:**
+
 - "La ruta nos aportó otro paso natural." = true
 - "La niña aportó otro paso natural." = false
 
@@ -37,6 +38,7 @@ public static boolean verificaCapicua(String cadena) {
 **Pregunta:** ¿Por qué HTTP utiliza TCP como protocolo de transporte?
 
 **Opciones:**
+
 - ✅ **Los paquetes deben llegar en el orden correcto.**
 - Porque no valida que los paquetes lleguen a destino.
 - Porque es más rápido.
@@ -48,6 +50,7 @@ public static boolean verificaCapicua(String cadena) {
 **Pregunta:** ¿Qué diferencias hay entre implementar el comportamiento de una lista utilizando como estructura de soporte un array vs una lista simplemente enlazada?
 
 **Opciones (Pick ONE OR MORE):**
+
 - Tanto lista simplemente enlazada como array permiten insertar en O(1) en el peor caso.
 - La eliminación de cualquier elemento puede hacerse en O(1) en una lista simplemente enlazada.
 - ✅ **La eliminación en un array típicamente es O(n), siendo n la cantidad de elementos de la lista.**
@@ -61,6 +64,7 @@ public static boolean verificaCapicua(String cadena) {
 **Pregunta:** ¿Cuáles de las siguientes afirmaciones son correctas acerca de IoC (inversión de control)?
 
 **Opciones (Pick ONE OR MORE):**
+
 - Solo se puede lograr utilizando un framework (como Spring, Guice, Simple Injector, InversifyJS).
 - IoC es un mecanismo para lograr inyección de dependencias.
 - ✅ **Inyección de dependencias es una técnica para lograr IoC.**
@@ -73,6 +77,7 @@ public static boolean verificaCapicua(String cadena) {
 **Pregunta:** Seleccionar las opciones correctas respecto a optimistic locking y pessimistic locking como estrategias de concurrencia en una base de datos.
 
 **Opciones (Pick ONE OR MORE):**
+
 - ✅ **El uso de un registro de versión o timestamp forman parte de una posible implementación de optimistic locking.**
 - ✅ **En algunos escenarios el uso de un esquema de pessimistic locking tiene como contrapartida la necesidad de realizar un manejo de concurrencia en la capa de negocio para evitar deadlocks.**
 - Por lo general una política pessimistic locking es mejor para soluciones web con gran tráfico.
@@ -87,6 +92,7 @@ public static boolean verificaCapicua(String cadena) {
 Estás diseñando un compilador C++ y necesitas verificar que los paréntesis de un archivo estén balanceados.
 
 Los paréntesis en un String se consideran balanceados si se cumplen los siguientes criterios:
+
 - Todos los paréntesis se cierran. Los paréntesis están en pares (i, 0 and [). El de la izquierda abre el par y el de la derecha lo cierra.
 - En todos los paréntesis anidados dentro de otros, deberán estar correctamente emparejados.
 
@@ -96,6 +102,7 @@ Por ejemplo, [()] es un grupo balanceado pero [(]) no lo es.
 Completá la función braces en el editor. La función deberá devolver una lista de String donde el string para el índice i indica si estaban o no balanceados los paréntesis para el value. El String, consiste en el valor "YES" o "NO" correspondiente al valor.
 
 **Constraints:**
+
 - 1 ≤ n ≤ 15
 - 1 ≤ largo de cada values ≤ 100
 - Cada values consiste únicamente de los caracteres {, }, [, ], (, ).
@@ -142,6 +149,7 @@ private static boolean isBalanced(String str) {
 **Pregunta:** Selecciona la opción correcta acerca de las pruebas.
 
 **Opciones (Pick ONE):**
+
 - ✅ **Un test unitario verifica la corrección del método testeado sin depender de otros componentes.**
 - Un test es unitario si contiene todas las validaciones (asserts) necesarias para verificar el comportamiento bajo los distintos escenarios.
 - Ninguna es verdadera.
@@ -159,6 +167,7 @@ UserService → UserRepository → RedisClient → Third Party Key Value SDK
 **Pregunta:** En el contexto de un test de integración en el cual queremos verificar que luego de guardar un usuario, podemos obtener correctamente el usuario recientemente creado indicando su clave, ¿cuál de las siguientes opciones consideras correcta?
 
 **Opciones (Pick ONE OR MORE):**
+
 - Si la instancia de Redis es accesible desde la red donde se ejecuta el test, no haría ningún cambio en la aplicación, ya que durante la ejecución del test puedo acceder a esa instancia pública sin problemas.
 - ✅ **Levantaría una instancia de Redis embebida en mi aplicación al ejecutar el test de integración configurada un profile de ejecución para test, inicializando RedisClient para que en lugar de utilizar la instancia de Redis original, utilice la embebida.**
 - Implementarás un stub de KeyValueClient indicando que la operación getValueById devuelve siempre una instancia prefabricada de User.
@@ -196,6 +205,7 @@ def func(lista, i = 0, j = -1) {
 **Pregunta:** Si una_lista = [3,3,2,1,4], indicar qué ocurre luego de ejecutar func(una_lista), asumiendo que el pasaje de argumentos es por referencia:
 
 **Opciones (Pick ONE):**
+
 - una_lista queda ordenada en forma decreciente (es decir, [4,3,3,2,1])
 - una_lista no resulta modificada
 - ✅ **una_lista queda ordenada en forma creciente (es decir, [1,2,3,3,4])**
@@ -238,6 +248,7 @@ if (prod.getCurrency() != oldCurrency && prod.getPrice() != oldPrice) {
 
 **Opciones (Pick ONE):**
 - ✅ **Builder**
+- 
 - Composite
 - Prototype
 
@@ -252,6 +263,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** ¿Qué patrón de diseño deberías utilizar para facilitar el uso de tu componente?
 
 **Opciones (Pick ONE):**
+
 - Bridge
 - ✅ **Facade**
 - Adapter
