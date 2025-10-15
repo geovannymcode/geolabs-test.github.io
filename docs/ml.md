@@ -278,6 +278,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 Marque las opciones de diseño válidas para crear una nueva lista.
 
 **Opciones (Pick ONE OR MORE):**
+
 - ✅ **POST a /lists con {"title":"...", "tasks":[...]} como body**
 - POST a /lists con {"id":"...", "title":"...", "tasks":[...]} como body
 - PUT a /lists con {"title":"...", "tasks":[...]} como body
@@ -296,6 +297,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 ¿Qué patrón de diseño deberías utilizar para facilitar el uso de tu componente?
 
 **Opciones (Pick ONE):**
+
 - Bridge
 - ✅ **Facade**
 - Adapter
@@ -308,6 +310,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** En un sistema distribuido moderno, las colas de mensajes son componentes importantes que proporcionan comunicación y coordinación entre las partes del sistema. ¿Cuál de lo siguiente es cierto?
 
 **Opciones (Pick ONE OR MORE):**
+
 - Las colas de mensajes hacen que el sistema esté más desacoplado.
 - ✅ **Las colas de mensajes aumentan la confiabilidad (reliability) del sistema.**
 - Las colas de mensajes, disminuyen el rendimiento general del sistema.
@@ -320,6 +323,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** Cuáles de las siguientes sentencias son verdaderas
 
 **Opciones (Pick ONE OR MORE):**
+
 - Cuando tenemos un alto volumen de consultas y todas están basadas en un mismo campo, tiene sentido utilizar una base clave-valor.
 - ✅ **Cuando importa la transaccionalidad y consistencia entre diferentes entidades lo mejor es utilizar una base de datos relacional.**
 - Cuando se salva en una base no-sql, es importante tener en cuenta los patrones de acceso a los datos.
@@ -331,6 +335,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** Cuando utilizamos una herramienta que garantiza la consistencia eventual...
 
 **Opciones (Pick ONE OR MORE):**
+
 - Entendemos que habrá algunos periodos de tiempo en los cuales diferentes nodos no ven la misma información.
 - Sabemos que un nodo a la vez puede estar atrasado en actualizar la información.
 - Sabemos que ningún nodo puede responder con información obsoleta.
@@ -344,6 +349,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** ¿Qué son y qué diferencia hay entre un thread (hilo) y un proceso?
 
 **Opciones (Pick ONE OR MORE):**
+
 - ✅ **Un proceso puede tener múltiples threads**
 - ✅ **Un thread puede tener múltiples procesos**
 - Los procesos no comparten espacio de memoria
@@ -356,6 +362,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** Cuáles de las siguientes sentencias sobre concurrencia y paralelismo son verdaderas
 
 **Opciones (Pick ONE OR MORE):**
+
 - Concurrencia implica tener más de un core, para poder procesar sentencias al mismo tiempo en cada uno de ellos.
 - ✅ **Paralelismo implica tener más de un core, para poder procesar sentencias al mismo tiempo en cada uno de ellos.**
 - ✅ **Puede haber concurrencia sin paralelismo.**
@@ -370,6 +377,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** ¿Qué son y qué diferencia hay entre un thread (hilo) y un proceso?
 
 **Opciones (Pick ONE OR MORE):**
+
 - ✅ **Un proceso puede tener múltiples threads**
 - ✅ **Un thread puede tener múltiples procesos**
 - Los procesos no comparten espacio de memoria
@@ -382,6 +390,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** Cuáles de las siguientes sentencias sobre concurrencia y paralelismo son verdaderas
 
 **Opciones (Pick ONE OR MORE):**
+
 - Concurrencia implica tener más de un core, para poder procesar sentencias al mismo tiempo en cada uno de ellos.
 - ✅ **Paralelismo implica tener más de un core, para poder procesar sentencias al mismo tiempo en cada uno de ellos.**
 - ✅ **Puede haber concurrencia sin paralelismo.**
@@ -394,6 +403,7 @@ A pesar de contar con una extensa documentación, los clientes suelen reportar i
 **Pregunta:** ¿Cuáles de las siguientes sentencias sobre cachés son verdaderas?
 
 **Opciones (Pick ONE OR MORE):**
+
 - Las aplicaciones son más complejas porque deben agregar lógica para invalidar las claves.
 - ✅ **Cuando se utilizan cachés locales, puede haber inconsistencias en las respuestas de diferentes nodos.**
 - ✅ **Las cachés no deberían ser utilizadas como el almacenamiento principal, sino una forma de optimizar los tiempos de respuesta.**
@@ -427,6 +437,7 @@ def max(lista, i = 0, j = -1) {
 **Pregunta:** Siendo n la longitud de la lista pasada como argumento, indicar la complejidad espacial de la función max:
 
 **Opciones (Pick ONE):**
+
 - O(1)
 - O(log n)
 - ✅ **O(n)**
@@ -488,6 +499,7 @@ public int sum(int a, int b) {
 **Pregunta:** Imagina que estás desarrollando una API la cual responde con sugerencias de ciudades a medida que el usuario va escribiendo. ¿Cómo puedes evitar el abuso de tu servicio?
 
 **Opciones (Pick ONE OR MORE):**
+
 - ✅ **Se puede utilizar una caché para reducir el impacto de queries similares.**
 - ✅ **Podemos analizar la IP que nos consulta, y limitar el acceso cuando el comportamiento es sospechoso.**
 - ✅ **Podríamos aplicar antirebote (debouncing) en el cliente para que la llamada a la API solo se ejecute un número limitado de veces en un intervalo de tiempo.**
@@ -499,6 +511,7 @@ public int sum(int a, int b) {
 **Contexto:** La tabla `user_level` guarda información histórica de los niveles alcanzados de experiencia (mensual/compras) de nuestros usuarios dentro de Mercado Libre.
 
 La tabla está constituida por las columnas:
+
 - `id` INT → id aleatorio de la row
 - `user_id` INT → El id único que identifica a un usuario
 - `user_level` INT → El nivel de experiencia, cuanto más alto mayor experiencia tiene
@@ -517,6 +530,7 @@ Se necesita obtener para cada usuario, su nivel actual único vigente, escriba u
 - Asegurándose de que el nivel no haya expirado
 
 **Ejemplo de tabla:**
+
 | id | user_id | user_level | user_type | date_completed | date_expired |
 |----|---------|------------|-----------|----------------|--------------|
 | 30 | 12345678| 3          | buyer     | 2021-03-02     | 2021-03-03   |
@@ -549,13 +563,16 @@ ORDER BY ul.date_completed DESC;
 ## Resumen de Respuestas
 
 ### Ejercicios de Programación (Java Funcional):
+
 1. **Palindromo** - verificaCapicua()
 2. **Paréntesis balanceados** - balancedBraces()
 
 ### Ejercicio SQL:
+
 1. **SQL KYC Levels** - Query para obtener nivel vigente único por usuario
 
 ### Preguntas de Opción Múltiple:
+
 - **Web**: Los paquetes deben llegar en el orden correcto
 - **Data Structures 2**: Eliminación O(n) en arrays, búsqueda O(log2n) en arrays ordenados
 - **POO 1**: IoC permite desacoplamiento, DI es técnica para lograr IoC
