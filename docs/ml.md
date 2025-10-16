@@ -17,7 +17,6 @@ public static boolean verificaCapicua(String cadena)
 ```
 
 **Solución 1 (Java Tradicional/Imperativo) - RECOMENDADA:**
-
 ```java
 public static boolean verificaCapicua(String cadena) {
     // Limpiar la cadena: solo letras y convertir a minúsculas
@@ -43,6 +42,23 @@ public static boolean verificaCapicua(String cadena) {
     }
     
     return true;
+}
+```
+
+**Solución 2 (Java con Programación Funcional) - ALTERNATIVA:**
+
+```java
+import java.util.stream.IntStream;
+
+public static boolean verificaCapicua(String cadena) {
+    String limpia = cadena.chars()
+        .filter(c -> Character.isLetter(c))
+        .map(Character::toLowerCase)
+        .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+        .toString();
+    
+    return IntStream.range(0, limpia.length() / 2)
+        .allMatch(i -> limpia.charAt(i) == limpia.charAt(limpia.length() - 1 - i));
 }
 ```
 
@@ -627,6 +643,187 @@ INNER JOIN (
     AND ul.date_completed = latest.max_date
 WHERE ul.date_expired IS NULL
 ORDER BY ul.date_completed DESC;
+```
+
+---
+---
+
+## 26. Pregunta de lógica 1
+
+**Instrucciones:**
+Tienes un contenedor de forma con dimensiones conocidas x,y. Dentro de este contenedor, se deben almacenar una cantidad de N cajas cada una de ellas con dimensiones a,b.
+
+Con base en las dimensiones del contenedor y las cajas:
+
+1. Determina cuántas cajas caben alineadas en una sola fila a lo largo de la longitud del contenedor.
+2. Calcula cuántas filas de cajas pueden formarse a lo ancho del contenedor.
+3. Calcula la cantidad total de cajas que se pueden almacenar en el contenedor.
+
+**Notas:**
+- Considera que el resultado debe ser cantidades enteras.
+- Cada excepción o caso borde que genere un error, la salida debe ser [0,0,0]
+- Las dimensiones de las cajas y contenedor pueden ser menores a 1, mayores de 0 y tener valores decimales.
+
+**Firma de la función:**
+```java
+public static List<Integer> calculaCantidades(double largo, double ancho, double anchoCaja, double largoCaja)
+```
+
+**Solución (Java Tradicional):**
+```java
+import java.util.*;
+
+public static List<Integer> calculaCantidades(double largo, double ancho, double anchoCaja, double largoCaja) {
+    List<Integer> resultado = new ArrayList<>();
+    
+    try {
+        // Validaciones: dimensiones deben ser mayores a 0
+        if (largo <= 0 || ancho <= 0 || anchoCaja <= 0 || largoCaja <= 0) {
+            resultado.add(0);
+            resultado.add(0);
+            resultado.add(0);
+            return resultado;
+        }
+        
+        // 1. Cuántas cajas caben en una fila (a lo largo)
+        int cajasPorFila = (int) (largo / largoCaja);
+        
+        // 2. Cuántas filas caben (a lo ancho)
+        int numeroFilas = (int) (ancho / anchoCaja);
+        
+        // 3. Total de cajas
+        int totalCajas = cajasPorFila * numeroFilas;
+        
+        resultado.add(cajasPorFila);
+        resultado.add(numeroFilas);
+        resultado.add(totalCajas);
+        
+    } catch (Exception e) {
+        // En caso de cualquier error, retornar [0,0,0]
+        resultado.add(0);
+        resultado.add(0);
+        resultado.add(0);
+    }
+    
+    return resultado;
+}
+```
+
+---
+
+## 27. Pregunta de Lógica 2
+
+**Instrucciones:**
+Implementar una aplicación que procese una lista de números enteros de manera concurrente.
+
+El método debe:
+
+1. Crear 10 hilos que procesen subconjuntos de la lista de números.
+2. Los subconjuntos deben tener máximo 100 elementos.
+3. Cada hilo debe sumar los números de su subconjunto.
+4. Si en algún momento se encuentra un número negativo el método debe:
+   - 4.1: El hilo debe lanzar una excepción personalizada NegativeNumberException.
+   - 4.2: Agregar al array de salida el número negativo.
+5. El programa principal debe capturar las excepciones que ocurran en cualquier hilo y continuar con el procesamiento.
+
+**Información adicional:**
+
+El método recibirá 2 parámetros de tipo Integer (rangoA, rangoB) con estos se crea la lista a procesar.
+El método retornará una lista con:
+
+- Los valores negativos encontrados (criterio 4 y 4.2)
+- Al final de la lista la suma creada en el criterio 3
+
+Debe retornar una lista con los valores negativos encontrados, y al final de la lista la suma de los números pares.
+
+**Firma de la función:**
+
+```java
+public static List<Integer> processNumbersConcurrently(long rangoA, long rangoB)
+```
+
+**Solución (Java Tradicional):**
+
+```java
+import java.util.*;
+import java.util.concurrent.*;
+
+// Excepción personalizada
+class NegativeNumberException extends Exception {
+    private int negativeNumber;
+    
+    public NegativeNumberException(int number) {
+        super("Número negativo encontrado: " + number);
+        this.negativeNumber = number;
+    }
+    
+    public int getNegativeNumber() {
+        return negativeNumber;
+    }
+}
+
+public static List<Integer> processNumbersConcurrently(long rangoA, long rangoB) {
+    List<Integer> resultado = new ArrayList<>();
+    List<Integer> numerosNegativos = Collections.synchronizedList(new ArrayList<>());
+    AtomicLong sumaTotal = new AtomicLong(0);
+    
+    // Crear la lista de números desde rangoA hasta rangoB
+    List<Long> numeros = new ArrayList<>();
+    for (long i = rangoA; i <= rangoB; i++) {
+        numeros.add(i);
+    }
+    
+    // Dividir la lista en chunks de máximo 100 elementos
+    int chunkSize = 100;
+    List<List<Long>> chunks = new ArrayList<>();
+    for (int i = 0; i < numeros.size(); i += chunkSize) {
+        int end = Math.min(i + chunkSize, numeros.size());
+        chunks.add(numeros.subList(i, end));
+    }
+    
+    // Crear máximo 10 hilos
+    int numThreads = Math.min(10, chunks.size());
+    ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+    List<Future<?>> futures = new ArrayList<>();
+    
+    // Procesar cada chunk en un hilo
+    for (List<Long> chunk : chunks) {
+        Future<?> future = executor.submit(() -> {
+            long sumaLocal = 0;
+            try {
+                for (Long num : chunk) {
+                    if (num < 0) {
+                        numerosNegativos.add(num.intValue());
+                        throw new NegativeNumberException(num.intValue());
+                    }
+                    sumaLocal += num;
+                }
+                sumaTotal.addAndGet(sumaLocal);
+            } catch (NegativeNumberException e) {
+                // Capturar la excepción y continuar
+                sumaTotal.addAndGet(sumaLocal);
+            }
+        });
+        futures.add(future);
+    }
+    
+    // Esperar a que todos los hilos terminen
+    for (Future<?> future : futures) {
+        try {
+            future.get();
+        } catch (Exception e) {
+            // Continuar con el procesamiento
+        }
+    }
+    
+    executor.shutdown();
+    
+    // Construir el resultado: negativos + suma al final
+    resultado.addAll(numerosNegativos);
+    resultado.add((int) sumaTotal.get());
+    
+    return resultado;
+}
 ```
 
 ---
