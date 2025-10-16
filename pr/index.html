@@ -1,0 +1,1756 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GeoLabs Workshop-Questions Docs">
+      
+      
+        <meta name="author" content="Geovanny Mendoza">
+      
+      
+        <link rel="canonical" href="https://github.com/geovannymcode/geolabs-test.github.io/pr/">
+      
+      
+        <link rel="prev" href="../fp/">
+      
+      
+        <link rel="next" href="../spring/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Programación Reactiva - GeoLabs Workshop-Questions</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.84d31ad4.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guia-de-entrevista-programacion-reactiva-y-spring-webflux" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GeoLabs Workshop-Questions" class="md-header__button md-logo" aria-label="GeoLabs Workshop-Questions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoLabs Workshop-Questions
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Programación Reactiva
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://geovannymcode.github.io/geolabs-test.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-test.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GeoLabs Workshop-Questions" class="md-nav__button md-logo" aria-label="GeoLabs Workshop-Questions" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoLabs Workshop-Questions
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://geovannymcode.github.io/geolabs-test.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-test.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Preguntas Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programación Funcional
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Programación Reactiva
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programación Reactiva
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentos-de-programacion-reactiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentos de Programación Reactiva
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentos de Programación Reactiva">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-que-es-la-programacion-reactiva-y-cuales-son-sus-principios" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ¿Qué es la programación reactiva y cuáles son sus principios?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-que-es-el-manifiesto-reactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ¿Qué es el manifiesto reactivo?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-que-es-reactive-streams-y-como-se-implementa-en-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ¿Qué es Reactive Streams y cómo se implementa en Java?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-que-es-la-contrapresion-backpressure-y-por-que-es-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. ¿Qué es la contrapresión (backpressure) y por qué es importante?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring WebFlux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring WebFlux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-que-es-spring-webflux-y-en-que-se-diferencia-de-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. ¿Qué es Spring WebFlux y en qué se diferencia de Spring MVC?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cuando-deberias-usar-webflux-en-lugar-de-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ¿Cuándo deberías usar WebFlux en lugar de Spring MVC?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-como-se-configuran-las-rutas-en-webflux-usando-el-enfoque-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. ¿Cómo se configuran las rutas en WebFlux usando el enfoque funcional?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-que-son-los-controladores-reactivos-en-webflux-y-como-se-implementan" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. ¿Qué son los controladores reactivos en WebFlux y cómo se implementan?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mono-y-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mono y Flux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mono y Flux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-que-son-mono-y-flux-en-project-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. ¿Qué son Mono y Flux en Project Reactor?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-cuales-son-los-principales-operadores-de-mono-y-flux-y-para-que-se-utilizan" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. ¿Cuáles son los principales operadores de Mono y Flux y para qué se utilizan?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-como-se-maneja-la-suscripcion-en-reactor-y-que-ocurre-si-no-te-suscribes" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. ¿Cómo se maneja la suscripción en Reactor y qué ocurre si no te suscribes?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-como-se-manejan-los-errores-en-programacion-reactiva-con-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. ¿Cómo se manejan los errores en programación reactiva con Reactor?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webclient-y-webtestclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebClient y WebTestClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WebClient y WebTestClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13-que-es-webclient-y-como-se-utiliza-para-consumir-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. ¿Qué es WebClient y cómo se utiliza para consumir APIs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-cuales-son-las-ventajas-de-usar-webclient-sobre-resttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. ¿Cuáles son las ventajas de usar WebClient sobre RestTemplate?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-que-es-webtestclient-y-como-se-utiliza-para-probar-endpoints-reactivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. ¿Qué es WebTestClient y cómo se utiliza para probar endpoints reactivos?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-como-se-manejan-las-pruebas-de-integracion-en-aplicaciones-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. ¿Cómo se manejan las pruebas de integración en aplicaciones WebFlux?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desventajas-y-consideraciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desventajas y Consideraciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Desventajas y Consideraciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#17-cuales-son-las-desventajas-de-usar-reactive-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. ¿Cuáles son las desventajas de usar Reactive Streams?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-cuando-no-deberias-usar-programacion-reactiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. ¿Cuándo NO deberías usar programación reactiva?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-como-afecta-la-programacion-reactiva-al-rendimiento-y-consumo-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. ¿Cómo afecta la programación reactiva al rendimiento y consumo de recursos?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-como-se-integra-la-seguridad-en-aplicaciones-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. ¿Cómo se integra la seguridad en aplicaciones WebFlux?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../spring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java y Spring Boot
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java y Spring Boot Parte 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../scala/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Scala
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Java y Spring Boot Parte 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#fundamentos-de-programacion-reactiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fundamentos de Programación Reactiva
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fundamentos de Programación Reactiva">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-que-es-la-programacion-reactiva-y-cuales-son-sus-principios" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. ¿Qué es la programación reactiva y cuáles son sus principios?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-que-es-el-manifiesto-reactivo" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. ¿Qué es el manifiesto reactivo?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-que-es-reactive-streams-y-como-se-implementa-en-java" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. ¿Qué es Reactive Streams y cómo se implementa en Java?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-que-es-la-contrapresion-backpressure-y-por-que-es-importante" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. ¿Qué es la contrapresión (backpressure) y por qué es importante?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spring-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spring WebFlux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spring WebFlux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#5-que-es-spring-webflux-y-en-que-se-diferencia-de-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. ¿Qué es Spring WebFlux y en qué se diferencia de Spring MVC?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-cuando-deberias-usar-webflux-en-lugar-de-spring-mvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. ¿Cuándo deberías usar WebFlux en lugar de Spring MVC?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-como-se-configuran-las-rutas-en-webflux-usando-el-enfoque-funcional" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. ¿Cómo se configuran las rutas en WebFlux usando el enfoque funcional?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-que-son-los-controladores-reactivos-en-webflux-y-como-se-implementan" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. ¿Qué son los controladores reactivos en WebFlux y cómo se implementan?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mono-y-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mono y Flux
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mono y Flux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#9-que-son-mono-y-flux-en-project-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. ¿Qué son Mono y Flux en Project Reactor?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-cuales-son-los-principales-operadores-de-mono-y-flux-y-para-que-se-utilizan" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. ¿Cuáles son los principales operadores de Mono y Flux y para qué se utilizan?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#11-como-se-maneja-la-suscripcion-en-reactor-y-que-ocurre-si-no-te-suscribes" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. ¿Cómo se maneja la suscripción en Reactor y qué ocurre si no te suscribes?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-como-se-manejan-los-errores-en-programacion-reactiva-con-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. ¿Cómo se manejan los errores en programación reactiva con Reactor?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#webclient-y-webtestclient" class="md-nav__link">
+    <span class="md-ellipsis">
+      WebClient y WebTestClient
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="WebClient y WebTestClient">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#13-que-es-webclient-y-como-se-utiliza-para-consumir-apis" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. ¿Qué es WebClient y cómo se utiliza para consumir APIs?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-cuales-son-las-ventajas-de-usar-webclient-sobre-resttemplate" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. ¿Cuáles son las ventajas de usar WebClient sobre RestTemplate?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-que-es-webtestclient-y-como-se-utiliza-para-probar-endpoints-reactivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. ¿Qué es WebTestClient y cómo se utiliza para probar endpoints reactivos?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-como-se-manejan-las-pruebas-de-integracion-en-aplicaciones-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. ¿Cómo se manejan las pruebas de integración en aplicaciones WebFlux?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#desventajas-y-consideraciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desventajas y Consideraciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Desventajas y Consideraciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#17-cuales-son-las-desventajas-de-usar-reactive-streams" class="md-nav__link">
+    <span class="md-ellipsis">
+      17. ¿Cuáles son las desventajas de usar Reactive Streams?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#18-cuando-no-deberias-usar-programacion-reactiva" class="md-nav__link">
+    <span class="md-ellipsis">
+      18. ¿Cuándo NO deberías usar programación reactiva?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#19-como-afecta-la-programacion-reactiva-al-rendimiento-y-consumo-de-recursos" class="md-nav__link">
+    <span class="md-ellipsis">
+      19. ¿Cómo afecta la programación reactiva al rendimiento y consumo de recursos?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#20-como-se-integra-la-seguridad-en-aplicaciones-webflux" class="md-nav__link">
+    <span class="md-ellipsis">
+      20. ¿Cómo se integra la seguridad en aplicaciones WebFlux?
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="guia-de-entrevista-programacion-reactiva-y-spring-webflux">Guía de Entrevista: Programación Reactiva y Spring WebFlux</h1>
+<h2 id="fundamentos-de-programacion-reactiva">Fundamentos de Programación Reactiva</h2>
+<h3 id="1-que-es-la-programacion-reactiva-y-cuales-son-sus-principios">1. ¿Qué es la programación reactiva y cuáles son sus principios?</h3>
+<p>La programación reactiva es un paradigma declarativo centrado en el trabajo con flujos de datos asíncronos y la propagación de cambios. Sus principios fundamentales son:</p>
+<ul>
+<li><strong>Responsive</strong>: El sistema responde de manera oportuna.</li>
+<li><strong>Resilient</strong>: El sistema permanece responsivo ante fallos.</li>
+<li><strong>Elastic</strong>: El sistema se mantiene responsivo bajo carga variable.</li>
+<li><strong>Message-Driven</strong>: Comunicación basada en mensajes asíncronos.</li>
+</ul>
+<p>La implementación se basa en el patrón Observer, donde los consumidores reaccionan a los datos a medida que son emitidos por los productores, en lugar de solicitarlos.</p>
+<h3 id="2-que-es-el-manifiesto-reactivo">2. ¿Qué es el manifiesto reactivo?</h3>
+<p>El Manifiesto Reactivo es un documento que establece los principios de los sistemas reactivos. Define que los sistemas reactivos deben ser responsivos, resilientes, elásticos y orientados a mensajes. Fue creado por Jonas Bonér, Dave Farley, Roland Kuhn y Martin Thompson en 2013, y ha sido firmado por numerosas organizaciones para promover este enfoque de desarrollo de software.</p>
+<h3 id="3-que-es-reactive-streams-y-como-se-implementa-en-java">3. ¿Qué es Reactive Streams y cómo se implementa en Java?</h3>
+<p>Reactive Streams es una iniciativa para proporcionar un estándar para el procesamiento asíncrono de flujos de datos con contrapresión (backpressure). En Java, se implementa a través de las interfaces:</p>
+<ul>
+<li><code>Publisher&lt;T&gt;</code>: Fuente de datos que emite elementos.</li>
+<li><code>Subscriber&lt;T&gt;</code>: Consumidor que recibe elementos.</li>
+<li><code>Subscription</code>: Enlace entre Publisher y Subscriber, permite solicitar elementos (backpressure).</li>
+<li><code>Processor&lt;T,R&gt;</code>: Combina Publisher y Subscriber, para transformaciones.</li>
+</ul>
+<p>Las implementaciones más populares en Java son:</p>
+<ul>
+<li>Project Reactor (usado por Spring WebFlux)</li>
+<li>RxJava</li>
+<li>Akka Streams</li>
+<li>Java 9 Flow API</li>
+</ul>
+<h3 id="4-que-es-la-contrapresion-backpressure-y-por-que-es-importante">4. ¿Qué es la contrapresión (backpressure) y por qué es importante?</h3>
+<p>La contrapresión es un mecanismo que permite a un consumidor controlar cuántos elementos puede procesar, evitando ser sobrecargado por un productor que emite datos demasiado rápido. Es esencial para sistemas reactivos porque:</p>
+<ol>
+<li>Previene desbordamientos de memoria (OutOfMemoryError)</li>
+<li>Evita la pérdida de datos</li>
+<li>Optimiza el uso de recursos</li>
+<li>Mejora la estabilidad del sistema</li>
+</ol>
+<p>En Reactive Streams, el Subscriber puede solicitar N elementos mediante <code>subscription.request(N)</code>, controlando así el flujo de datos.</p>
+<h2 id="spring-webflux">Spring WebFlux</h2>
+<h3 id="5-que-es-spring-webflux-y-en-que-se-diferencia-de-spring-mvc">5. ¿Qué es Spring WebFlux y en qué se diferencia de Spring MVC?</h3>
+<p>Spring WebFlux es un framework web reactivo no bloqueante que forma parte de Spring 5+. Sus principales diferencias con Spring MVC son:</p>
+<table>
+<thead>
+<tr>
+<th>Spring MVC</th>
+<th>Spring WebFlux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bloqueante (1 hilo por solicitud)</td>
+<td>No bloqueante (pocos hilos para muchas solicitudes)</td>
+</tr>
+<tr>
+<td>Basado en Servlet API</td>
+<td>Basado en Reactive Streams</td>
+</tr>
+<tr>
+<td>Modelo imperativo</td>
+<td>Modelo reactivo (declarativo)</td>
+</tr>
+<tr>
+<td>Contenedor tradicional (Tomcat, Jetty)</td>
+<td>Contenedores tradicionales o Netty (predeterminado)</td>
+</tr>
+<tr>
+<td>Procesamiento secuencial</td>
+<td>Procesamiento asíncrono</td>
+</tr>
+<tr>
+<td>Mayor consumo de recursos bajo carga</td>
+<td>Mayor eficiencia con recursos bajo carga</td>
+</tr>
+</tbody>
+</table>
+<p>WebFlux es ideal para aplicaciones con alto throughput y operaciones intensivas de E/S, mientras que MVC es más simple para aplicaciones CRUD estándar.</p>
+<h3 id="6-cuando-deberias-usar-webflux-en-lugar-de-spring-mvc">6. ¿Cuándo deberías usar WebFlux en lugar de Spring MVC?</h3>
+<p>Deberías considerar usar WebFlux cuando:</p>
+<ul>
+<li>Tu aplicación requiere manejar muchas conexiones concurrentes (miles)</li>
+<li>Trabajas con operaciones de E/S de larga duración o servicios remotos</li>
+<li>Necesitas streaming de datos (SSE, WebSockets)</li>
+<li>Tienes alta latencia en operaciones de E/S</li>
+<li>Quieres maximizar el uso de recursos del servidor</li>
+<li>Trabajas con microservicios que se comunican de forma asíncrona</li>
+</ul>
+<p>No es recomendable cuando:</p>
+<ul>
+<li>Tu equipo no está familiarizado con programación reactiva</li>
+<li>Usas bibliotecas o APIs bloqueantes</li>
+<li>Necesitas integrar con sistemas que no tienen soporte reactivo</li>
+<li>Las operaciones son principalmente de CPU y no de E/S</li>
+<li>No hay necesidad de alto throughput o gran concurrencia</li>
+</ul>
+<h3 id="7-como-se-configuran-las-rutas-en-webflux-usando-el-enfoque-funcional">7. ¿Cómo se configuran las rutas en WebFlux usando el enfoque funcional?</h3>
+<p>WebFlux ofrece un enfoque funcional para definir rutas usando <code>RouterFunction</code> y <code>HandlerFunction</code>:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nd">@Configuration</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UsuarioRouter</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nd">@Bean</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RouterFunction</span><span class="o">&lt;</span><span class="n">ServerResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">rutasUsuario</span><span class="p">(</span><span class="n">UsuarioHandler</span><span class="w"> </span><span class="n">handler</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">route</span><span class="p">()</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">(</span><span class="s">&quot;/usuarios&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">::</span><span class="n">listarUsuarios</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="p">.</span><span class="na">GET</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">::</span><span class="n">obtenerUsuario</span><span class="p">)</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="p">.</span><span class="na">POST</span><span class="p">(</span><span class="s">&quot;/usuarios&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">::</span><span class="n">crearUsuario</span><span class="p">)</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="p">.</span><span class="na">PUT</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">::</span><span class="n">actualizarUsuario</span><span class="p">)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">            </span><span class="p">.</span><span class="na">DELETE</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">handler</span><span class="p">::</span><span class="n">eliminarUsuario</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">}</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nd">@Component</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UsuarioHandler</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">ServerResponse</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">listarUsuarios</span><span class="p">(</span><span class="n">ServerRequest</span><span class="w"> </span><span class="n">request</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ServerResponse</span><span class="p">.</span><span class="na">ok</span><span class="p">()</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="p">.</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">            </span><span class="p">.</span><span class="na">body</span><span class="p">(</span><span class="n">servicioUsuario</span><span class="p">.</span><span class="na">findAll</span><span class="p">(),</span><span class="w"> </span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">    </span><span class="c1">// Otros métodos handler...</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Este enfoque separa claramente el enrutamiento de la lógica de manipulación, permitiendo un código más declarativo y componible.</p>
+<h3 id="8-que-son-los-controladores-reactivos-en-webflux-y-como-se-implementan">8. ¿Qué son los controladores reactivos en WebFlux y cómo se implementan?</h3>
+<p>Los controladores reactivos en WebFlux son similares a los controladores de Spring MVC, pero devuelven tipos reactivos (<code>Mono&lt;T&gt;</code> o <code>Flux&lt;T&gt;</code>). Se implementan usando la anotación <code>@RestController</code>:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@RestController</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/usuarios&quot;</span><span class="p">)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">UsuarioController</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">UsuarioService</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">;</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="nd">@Autowired</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="nf">UsuarioController</span><span class="p">(</span><span class="n">UsuarioService</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">usuarioService</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">;</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">    </span><span class="nd">@GetMapping</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">listarUsuarios</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">obtenerUsuarioPorId</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span><span class="nd">@PostMapping</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">    </span><span class="nd">@ResponseStatus</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">CREATED</span><span class="p">)</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">crearUsuario</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">Usuario</span><span class="w"> </span><span class="n">usuario</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">usuario</span><span class="p">);</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Los controladores reactivos procesan las solicitudes de forma no bloqueante, permitiendo manejar más solicitudes con menos recursos.</p>
+<h2 id="mono-y-flux">Mono y Flux</h2>
+<h3 id="9-que-son-mono-y-flux-en-project-reactor">9. ¿Qué son Mono y Flux en Project Reactor?</h3>
+<p><code>Mono</code> y <code>Flux</code> son las implementaciones principales de <code>Publisher</code> en Project Reactor:</p>
+<ul>
+<li><strong>Mono<T></strong>: Representa una secuencia asíncrona de 0 o 1 elemento. Equivalente reactivo a <code>CompletableFuture&lt;T&gt;</code> o <code>Optional&lt;T&gt;</code>.</li>
+<li><strong>Flux<T></strong>: Representa una secuencia asíncrona de 0 a N elementos. Equivalente reactivo a <code>Stream&lt;T&gt;</code> o <code>List&lt;T&gt;</code>.</li>
+</ul>
+<p>Ambos tipos ofrecen operadores para transformar, combinar y manipular flujos de datos de manera declarativa y no bloqueante.</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Ejemplo de Mono</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarioMono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repositorio</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="s">&quot;123&quot;</span><span class="p">);</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// Ejemplo de Flux</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuariosFlux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repositorio</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+</span></code></pre></div>
+<h3 id="10-cuales-son-los-principales-operadores-de-mono-y-flux-y-para-que-se-utilizan">10. ¿Cuáles son los principales operadores de Mono y Flux y para qué se utilizan?</h3>
+<p>Project Reactor ofrece numerosos operadores para trabajar con flujos reactivos:</p>
+<p><strong>Operadores de Transformación</strong>:</p>
+<ul>
+<li>
+<p><strong>map</strong>: Transforma cada elemento aplicando una función que devuelve un nuevo valor.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nombres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuariosFlux</span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Usuario</span><span class="p">::</span><span class="n">getNombre</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>flatMap</strong>: Transforma cada elemento en un Publisher y "aplana" los resultados en un único flujo. Los elementos pueden entremezclarse (orden no garantizado).
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Comentario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comentarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">comentarioRepository</span><span class="p">.</span><span class="na">findByUsuarioId</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>concatMap</strong>: Similar a flatMap, pero preserva el orden de los elementos originales, procesando cada fuente completamente antes de pasar a la siguiente.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Comentario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comentariosOrdenados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span><span class="p">.</span><span class="na">concatMap</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">comentarioRepository</span><span class="p">.</span><span class="na">findByUsuarioId</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>flatMapMany</strong>: Específico para Mono, convierte un Mono en un Flux aplicando una función que devuelve múltiples elementos.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarioMono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Comentario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">comentarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="p">.</span><span class="na">flatMapMany</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">comentarioRepository</span><span class="p">.</span><span class="na">findByUsuarioId</span><span class="p">(</span><span class="n">u</span><span class="p">.</span><span class="na">getId</span><span class="p">()));</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Operadores de Filtrado</strong>:</p>
+<ul>
+<li>
+<p><strong>filter</strong>: Incluye solo los elementos que cumplen con el predicado dado.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">adultos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">getEdad</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">18</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>distinct</strong>: Elimina elementos duplicados, manteniendo solo la primera ocurrencia.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">distintas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">palabras</span><span class="p">.</span><span class="na">distinct</span><span class="p">();</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>take</strong>: Limita el flujo a un número específico de elementos, tomando solo los primeros N elementos.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">primerosTres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">take</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>skip</strong>: Omite los primeros N elementos del flujo y emite los restantes.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">despuesDeDos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">skip</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Operadores de Combinación</strong>:</p>
+<ul>
+<li>
+<p><strong>zip</strong>: Combina elementos de múltiples Publishers emparejándolos por posición.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">UsuarioConEstadistica</span><span class="o">&gt;</span><span class="w"> </span><span class="n">combinado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flux</span><span class="p">.</span><span class="na">zip</span><span class="p">(</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="n">usuarios</span><span class="p">,</span><span class="w"> </span><span class="n">estadisticas</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UsuarioConEstadistica</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>merge</strong>: Combina múltiples Publishers en uno solo, entremezclando elementos a medida que llegan.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Notificacion</span><span class="o">&gt;</span><span class="w"> </span><span class="n">todas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flux</span><span class="p">.</span><span class="na">merge</span><span class="p">(</span><span class="n">notificacionesEmail</span><span class="p">,</span><span class="w"> </span><span class="n">notificacionesSMS</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>concat</strong>: Combina múltiples Publishers secuencialmente, esperando a que cada uno complete.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Dato</span><span class="o">&gt;</span><span class="w"> </span><span class="n">todosDatos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flux</span><span class="p">.</span><span class="na">concat</span><span class="p">(</span><span class="n">datosCache</span><span class="p">,</span><span class="w"> </span><span class="n">datosDB</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Operadores de Reducción</strong>:</p>
+<ul>
+<li>
+<p><strong>reduce</strong>: Combina todos los elementos en un único valor aplicando una función acumuladora.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span><span class="w"> </span><span class="n">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">numeros</span><span class="p">.</span><span class="na">reduce</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">acumulado</span><span class="p">,</span><span class="w"> </span><span class="n">actual</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">acumulado</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">actual</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>count</strong>: Cuenta el número total de elementos en el flujo.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">count</span><span class="p">();</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>collectList</strong>: Recolecta todos los elementos en una lista.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">listaUsuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">collectList</span><span class="p">();</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>collectMap</strong>: Recolecta elementos en un Map usando una función para determinar las claves.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">Usuario</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">mapaPorId</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">collectMap</span><span class="p">(</span><span class="n">Usuario</span><span class="p">::</span><span class="n">getId</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Manejo de errores</strong>:</p>
+<ul>
+<li>
+<p><strong>onErrorReturn</strong>: Sustituye el error con un valor predeterminado y completa el flujo.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorReturn</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Usuario por defecto&quot;</span><span class="p">));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>onErrorResume</strong>: Cambia a un Publisher alternativo cuando ocurre un error.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">primaryRepo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorResume</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">backupRepo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>retry</strong>: Reintenta toda la secuencia un número específico de veces en caso de error.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Datos</span><span class="o">&gt;</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">servicio</span><span class="p">.</span><span class="na">getDatosInestables</span><span class="p">().</span><span class="na">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p><strong>Contexto y Threading</strong>:</p>
+<ul>
+<li>
+<p><strong>publishOn</strong>: Cambia el Scheduler donde los operadores subsiguientes se ejecutarán.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repository</span><span class="p">.</span><span class="na">findAll</span><span class="p">()</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">    </span><span class="p">.</span><span class="na">publishOn</span><span class="p">(</span><span class="n">Schedulers</span><span class="p">.</span><span class="na">parallel</span><span class="p">())</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">    </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="k">this</span><span class="p">::</span><span class="n">procesoPesado</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>subscribeOn</strong>: Especifica el Scheduler donde la suscripción inicial se ejecutará.
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Data</span><span class="o">&gt;</span><span class="w"> </span><span class="n">datos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operacionBloqueanteWrapper</span><span class="p">()</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">    </span><span class="p">.</span><span class="na">subscribeOn</span><span class="p">(</span><span class="n">Schedulers</span><span class="p">.</span><span class="na">boundedElastic</span><span class="p">());</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<h3 id="11-como-se-maneja-la-suscripcion-en-reactor-y-que-ocurre-si-no-te-suscribes">11. ¿Cómo se maneja la suscripción en Reactor y qué ocurre si no te suscribes?</h3>
+<p>En Reactor, la suscripción es el desencadenante que inicia el flujo de datos desde el <code>Publisher</code> hacia el <code>Subscriber</code>. Sin suscripción, nada ocurre (lazy evaluation).</p>
+<p>Una suscripción completa incluye tres callbacks:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="n">flux</span><span class="p">.</span><span class="na">subscribe</span><span class="p">(</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="n">data</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Dato: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">data</span><span class="p">),</span><span class="w">     </span><span class="c1">// onNext</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="n">error</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">error</span><span class="p">),</span><span class="w">  </span><span class="c1">// onError</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="p">()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Completado&quot;</span><span class="p">)</span><span class="w">           </span><span class="c1">// onComplete</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="p">);</span>
+</span></code></pre></div></p>
+<p>Si no te suscribes:</p>
+<ol>
+<li>No se ejecuta ninguna operación</li>
+<li>No se emiten datos</li>
+<li>No se generan efectos secundarios</li>
+</ol>
+<p>Esto se conoce como "ensamblaje vs ejecución" - puedes construir un flujo complejo sin ejecutarlo hasta la suscripción.</p>
+<h3 id="12-como-se-manejan-los-errores-en-programacion-reactiva-con-reactor">12. ¿Cómo se manejan los errores en programación reactiva con Reactor?</h3>
+<p>Reactor ofrece varios operadores para manejar errores de forma declarativa:</p>
+<ul>
+<li>
+<p><strong>onErrorReturn</strong>: Proporciona un valor por defecto en caso de error
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarioODefault</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorReturn</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;default&quot;</span><span class="p">));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>onErrorResume</strong>: Cambia a un Publisher alternativo en caso de error
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conRecuperacion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorResume</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">fallbackService</span><span class="p">.</span><span class="na">getUsuario</span><span class="p">());</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>onErrorMap</strong>: Transforma un error en otro tipo de error
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conErrorMapeado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorMap</span><span class="p">(</span><span class="n">RuntimeException</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="w">        </span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">UsuarioException</span><span class="p">(</span><span class="s">&quot;Error al obtener usuario&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>doOnError</strong>: Ejecuta un efecto secundario cuando ocurre un error
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conLog</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="w">    </span><span class="p">.</span><span class="na">doOnError</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Error en flujo: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()));</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>retry/retryWhen</strong>: Reintenta la secuencia en caso de error
+  <div class="language-java highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">conReintento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioMono</span><span class="p">.</span><span class="na">retry</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<p>Los errores en programación reactiva siguen el principio de "fail-fast" y terminan la secuencia inmediatamente a menos que sean manejados.</p>
+<h2 id="webclient-y-webtestclient">WebClient y WebTestClient</h2>
+<h3 id="13-que-es-webclient-y-como-se-utiliza-para-consumir-apis">13. ¿Qué es WebClient y cómo se utiliza para consumir APIs?</h3>
+<p>WebClient es el cliente HTTP reactivo de Spring WebFlux, diseñado para realizar peticiones de forma no bloqueante. Reemplaza al antiguo RestTemplate con un enfoque reactivo.</p>
+<p>Características principales:</p>
+<ul>
+<li>No bloqueante y reactivo</li>
+<li>Fluent API para configuración y peticiones</li>
+<li>Soporte para codificación/decodificación de objetos</li>
+<li>Manejo de errores reactivo</li>
+<li>Integración con ReactiveAdapterRegistry</li>
+</ul>
+<p>Ejemplo básico:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">WebClient</span><span class="w"> </span><span class="n">webClient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">WebClient</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;https://api.ejemplo.com&quot;</span><span class="p">);</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">webClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">123</span><span class="p">)</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="p">.</span><span class="na">header</span><span class="p">(</span><span class="s">&quot;Authorization&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Bearer token&quot;</span><span class="p">)</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">    </span><span class="p">.</span><span class="na">retrieve</span><span class="p">()</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">    </span><span class="p">.</span><span class="na">bodyToMono</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="c1">// O con más control sobre respuestas HTTP</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarioDetallado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">webClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">    </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">123</span><span class="p">)</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">    </span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">    </span><span class="p">.</span><span class="na">exchangeToMono</span><span class="p">(</span><span class="n">response</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">statusCode</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">OK</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">bodyToMono</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">response</span><span class="p">.</span><span class="na">statusCode</span><span class="p">().</span><span class="na">is4xxClientError</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ClienteException</span><span class="p">(</span><span class="s">&quot;Error de cliente&quot;</span><span class="p">));</span>
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">ServidorException</span><span class="p">(</span><span class="s">&quot;Error de servidor&quot;</span><span class="p">));</span>
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="w">    </span><span class="p">});</span>
+</span></code></pre></div></p>
+<h3 id="14-cuales-son-las-ventajas-de-usar-webclient-sobre-resttemplate">14. ¿Cuáles son las ventajas de usar WebClient sobre RestTemplate?</h3>
+<p>WebClient ofrece varias ventajas sobre RestTemplate:</p>
+<ol>
+<li><strong>Modelo no bloqueante</strong>: Utiliza menos hilos para manejar más peticiones.</li>
+<li><strong>API funcional y fluida</strong>: Más expresiva y componible.</li>
+<li><strong>Streaming reactivo</strong>: Soporte para flujos de datos continuos (SSE, WebSockets).</li>
+<li><strong>Backpressure</strong>: Control de flujo para evitar sobrecarga.</li>
+<li><strong>Cancelación</strong>: Permite cancelar peticiones en curso.</li>
+<li><strong>Composición</strong>: Facilita la combinación de múltiples llamadas API.</li>
+<li><strong>Mejor testabilidad</strong>: Diseñado para ser fácilmente mockeado.</li>
+<li><strong>Compatibilidad con Reactor y RxJava</strong>: Interoperabilidad con otras librerías reactivas.</li>
+</ol>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="c1">// RestTemplate (bloqueante)</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">restTemplate</span><span class="p">.</span><span class="na">getForEntity</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">);</span>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="n">Usuario</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">response</span><span class="p">.</span><span class="na">getBody</span><span class="p">();</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a>
+</span><span id="__span-30-5"><a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="c1">// WebClient (no bloqueante)</span>
+</span><span id="__span-30-6"><a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarioMono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">webClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-30-7"><a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a><span class="w">    </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-30-8"><a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="w">    </span><span class="p">.</span><span class="na">retrieve</span><span class="p">()</span>
+</span><span id="__span-30-9"><a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span><span class="p">.</span><span class="na">bodyToMono</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">);</span>
+</span></code></pre></div>
+<h3 id="15-que-es-webtestclient-y-como-se-utiliza-para-probar-endpoints-reactivos">15. ¿Qué es WebTestClient y cómo se utiliza para probar endpoints reactivos?</h3>
+<p>WebTestClient es una herramienta especializada para probar aplicaciones WebFlux, proporcionando una API fluida para realizar y verificar solicitudes HTTP. Puede trabajar contra servidores reales, controladores Spring WebFlux o funciones de enrutamiento.</p>
+<p>Características:</p>
+<ul>
+<li>API fluida similar a WebClient</li>
+<li>Aserciones específicas para pruebas</li>
+<li>Soporte para verificar respuestas reactivas</li>
+<li>Compatible con JUnit y otros frameworks de pruebas</li>
+</ul>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nd">@SpringBootTest</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="nd">@AutoConfigureWebTestClient</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="kd">class</span> <span class="nc">UsuarioControllerTest</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="w">    </span><span class="nd">@Autowired</span>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">WebTestClient</span><span class="w"> </span><span class="n">webTestClient</span><span class="p">;</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="w">    </span><span class="nd">@Test</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testObtenerUsuario</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="w">        </span><span class="n">webTestClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-31-11"><a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/usuarios/{id}&quot;</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-31-12"><a id="__codelineno-31-12" name="__codelineno-31-12" href="#__codelineno-31-12"></a><span class="w">            </span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+</span><span id="__span-31-13"><a id="__codelineno-31-13" name="__codelineno-31-13" href="#__codelineno-31-13"></a><span class="w">            </span><span class="p">.</span><span class="na">exchange</span><span class="p">()</span>
+</span><span id="__span-31-14"><a id="__codelineno-31-14" name="__codelineno-31-14" href="#__codelineno-31-14"></a><span class="w">            </span><span class="p">.</span><span class="na">expectStatus</span><span class="p">().</span><span class="na">isOk</span><span class="p">()</span>
+</span><span id="__span-31-15"><a id="__codelineno-31-15" name="__codelineno-31-15" href="#__codelineno-31-15"></a><span class="w">            </span><span class="p">.</span><span class="na">expectHeader</span><span class="p">().</span><span class="na">contentType</span><span class="p">(</span><span class="n">MediaType</span><span class="p">.</span><span class="na">APPLICATION_JSON</span><span class="p">)</span>
+</span><span id="__span-31-16"><a id="__codelineno-31-16" name="__codelineno-31-16" href="#__codelineno-31-16"></a><span class="w">            </span><span class="p">.</span><span class="na">expectBody</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><span id="__span-31-17"><a id="__codelineno-31-17" name="__codelineno-31-17" href="#__codelineno-31-17"></a><span class="w">            </span><span class="p">.</span><span class="na">value</span><span class="p">(</span><span class="n">usuario</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-18"><a id="__codelineno-31-18" name="__codelineno-31-18" href="#__codelineno-31-18"></a><span class="w">                </span><span class="n">assertThat</span><span class="p">(</span><span class="n">usuario</span><span class="p">.</span><span class="na">getId</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span>
+</span><span id="__span-31-19"><a id="__codelineno-31-19" name="__codelineno-31-19" href="#__codelineno-31-19"></a><span class="w">                </span><span class="n">assertThat</span><span class="p">(</span><span class="n">usuario</span><span class="p">.</span><span class="na">getNombre</span><span class="p">()).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
+</span><span id="__span-31-20"><a id="__codelineno-31-20" name="__codelineno-31-20" href="#__codelineno-31-20"></a><span class="w">            </span><span class="p">});</span>
+</span><span id="__span-31-21"><a id="__codelineno-31-21" name="__codelineno-31-21" href="#__codelineno-31-21"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-22"><a id="__codelineno-31-22" name="__codelineno-31-22" href="#__codelineno-31-22"></a>
+</span><span id="__span-31-23"><a id="__codelineno-31-23" name="__codelineno-31-23" href="#__codelineno-31-23"></a><span class="w">    </span><span class="nd">@Test</span>
+</span><span id="__span-31-24"><a id="__codelineno-31-24" name="__codelineno-31-24" href="#__codelineno-31-24"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testListarUsuarios</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-31-25"><a id="__codelineno-31-25" name="__codelineno-31-25" href="#__codelineno-31-25"></a><span class="w">        </span><span class="n">webTestClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-31-26"><a id="__codelineno-31-26" name="__codelineno-31-26" href="#__codelineno-31-26"></a><span class="w">            </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/usuarios&quot;</span><span class="p">)</span>
+</span><span id="__span-31-27"><a id="__codelineno-31-27" name="__codelineno-31-27" href="#__codelineno-31-27"></a><span class="w">            </span><span class="p">.</span><span class="na">exchange</span><span class="p">()</span>
+</span><span id="__span-31-28"><a id="__codelineno-31-28" name="__codelineno-31-28" href="#__codelineno-31-28"></a><span class="w">            </span><span class="p">.</span><span class="na">expectStatus</span><span class="p">().</span><span class="na">isOk</span><span class="p">()</span>
+</span><span id="__span-31-29"><a id="__codelineno-31-29" name="__codelineno-31-29" href="#__codelineno-31-29"></a><span class="w">            </span><span class="p">.</span><span class="na">expectBodyList</span><span class="p">(</span><span class="n">Usuario</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><span id="__span-31-30"><a id="__codelineno-31-30" name="__codelineno-31-30" href="#__codelineno-31-30"></a><span class="w">            </span><span class="p">.</span><span class="na">hasSize</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</span><span id="__span-31-31"><a id="__codelineno-31-31" name="__codelineno-31-31" href="#__codelineno-31-31"></a><span class="w">            </span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">));</span>
+</span><span id="__span-31-32"><a id="__codelineno-31-32" name="__codelineno-31-32" href="#__codelineno-31-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-31-33"><a id="__codelineno-31-33" name="__codelineno-31-33" href="#__codelineno-31-33"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Para probar controladores específicos sin iniciar toda la aplicación:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="nd">@WebFluxTest</span><span class="p">(</span><span class="n">UsuarioController</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="kd">class</span> <span class="nc">UsuarioControllerTest</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">    </span><span class="nd">@Autowired</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">WebTestClient</span><span class="w"> </span><span class="n">webTestClient</span><span class="p">;</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a><span class="w">    </span><span class="nd">@MockBean</span>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UsuarioService</span><span class="w"> </span><span class="n">usuarioService</span><span class="p">;</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a><span class="w">    </span><span class="nd">@Test</span>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testObtenerUsuario</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="w">        </span><span class="n">when</span><span class="p">(</span><span class="n">usuarioService</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">))</span>
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a><span class="w">            </span><span class="p">.</span><span class="na">thenReturn</span><span class="p">(</span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">)));</span>
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a><span class="w">        </span><span class="c1">// Prueba como en el ejemplo anterior</span>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<h3 id="16-como-se-manejan-las-pruebas-de-integracion-en-aplicaciones-webflux">16. ¿Cómo se manejan las pruebas de integración en aplicaciones WebFlux?</h3>
+<p>Las pruebas de integración en WebFlux utilizan <code>WebTestClient</code> con un enfoque más completo:</p>
+<ol>
+<li><strong>Configuración de prueba</strong>:</li>
+</ol>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nd">@SpringBootTest</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nd">@AutoConfigureWebTestClient</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="kd">class</span> <span class="nc">ApiIntegrationTest</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">    </span><span class="nd">@Autowired</span>
+</span><span id="__span-33-6"><a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">WebTestClient</span><span class="w"> </span><span class="n">webTestClient</span><span class="p">;</span>
+</span><span id="__span-33-7"><a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a>
+</span><span id="__span-33-8"><a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">    </span><span class="c1">// Tests...</span>
+</span><span id="__span-33-9"><a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Pruebas con base de datos reactiva</strong> (ej. MongoDB reactivo):</li>
+</ol>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="nd">@DataMongoTest</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="nd">@Import</span><span class="p">(</span><span class="n">UsuarioRepositoryImpl</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a><span class="kd">class</span> <span class="nc">UsuarioRepositoryTest</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a><span class="w">    </span><span class="nd">@Autowired</span>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">UsuarioRepository</span><span class="w"> </span><span class="n">repository</span><span class="p">;</span>
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a><span class="w">    </span><span class="nd">@Test</span>
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">testGuardarYBuscar</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a><span class="w">        </span><span class="n">Usuario</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Usuario</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Juan&quot;</span><span class="p">);</span>
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a><span class="w">        </span><span class="n">StepVerifier</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">repository</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">usuario</span><span class="p">))</span>
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a><span class="w">            </span><span class="p">.</span><span class="na">expectNextMatches</span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">u</span><span class="p">.</span><span class="na">getId</span><span class="p">().</span><span class="na">equals</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">))</span>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a><span class="w">            </span><span class="p">.</span><span class="na">verifyComplete</span><span class="p">();</span>
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a>
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a><span class="w">        </span><span class="n">StepVerifier</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">repository</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">))</span>
+</span><span id="__span-34-17"><a id="__codelineno-34-17" name="__codelineno-34-17" href="#__codelineno-34-17"></a><span class="w">            </span><span class="p">.</span><span class="na">expectNext</span><span class="p">(</span><span class="n">usuario</span><span class="p">)</span>
+</span><span id="__span-34-18"><a id="__codelineno-34-18" name="__codelineno-34-18" href="#__codelineno-34-18"></a><span class="w">            </span><span class="p">.</span><span class="na">verifyComplete</span><span class="p">();</span>
+</span><span id="__span-34-19"><a id="__codelineno-34-19" name="__codelineno-34-19" href="#__codelineno-34-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-34-20"><a id="__codelineno-34-20" name="__codelineno-34-20" href="#__codelineno-34-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Pruebas de flujos de datos reactivos con StepVerifier</strong>:</li>
+</ol>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nd">@Test</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">testStreamingEndpoint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="w">    </span><span class="n">Flux</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">responseFlux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">webTestClient</span><span class="p">.</span><span class="na">get</span><span class="p">()</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="w">        </span><span class="p">.</span><span class="na">uri</span><span class="p">(</span><span class="s">&quot;/stream/datos&quot;</span><span class="p">)</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="w">        </span><span class="p">.</span><span class="na">exchange</span><span class="p">()</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a><span class="w">        </span><span class="p">.</span><span class="na">expectStatus</span><span class="p">().</span><span class="na">isOk</span><span class="p">()</span>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="w">        </span><span class="p">.</span><span class="na">returnResult</span><span class="p">(</span><span class="n">String</span><span class="p">.</span><span class="na">class</span><span class="p">)</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="w">        </span><span class="p">.</span><span class="na">getResponseBody</span><span class="p">();</span>
+</span><span id="__span-35-9"><a id="__codelineno-35-9" name="__codelineno-35-9" href="#__codelineno-35-9"></a>
+</span><span id="__span-35-10"><a id="__codelineno-35-10" name="__codelineno-35-10" href="#__codelineno-35-10"></a><span class="w">    </span><span class="n">StepVerifier</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">responseFlux</span><span class="p">)</span>
+</span><span id="__span-35-11"><a id="__codelineno-35-11" name="__codelineno-35-11" href="#__codelineno-35-11"></a><span class="w">        </span><span class="p">.</span><span class="na">expectNext</span><span class="p">(</span><span class="s">&quot;dato1&quot;</span><span class="p">)</span>
+</span><span id="__span-35-12"><a id="__codelineno-35-12" name="__codelineno-35-12" href="#__codelineno-35-12"></a><span class="w">        </span><span class="p">.</span><span class="na">expectNext</span><span class="p">(</span><span class="s">&quot;dato2&quot;</span><span class="p">)</span>
+</span><span id="__span-35-13"><a id="__codelineno-35-13" name="__codelineno-35-13" href="#__codelineno-35-13"></a><span class="w">        </span><span class="p">.</span><span class="na">expectNext</span><span class="p">(</span><span class="s">&quot;dato3&quot;</span><span class="p">)</span>
+</span><span id="__span-35-14"><a id="__codelineno-35-14" name="__codelineno-35-14" href="#__codelineno-35-14"></a><span class="w">        </span><span class="p">.</span><span class="na">expectComplete</span><span class="p">()</span>
+</span><span id="__span-35-15"><a id="__codelineno-35-15" name="__codelineno-35-15" href="#__codelineno-35-15"></a><span class="w">        </span><span class="p">.</span><span class="na">verify</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span><span id="__span-35-16"><a id="__codelineno-35-16" name="__codelineno-35-16" href="#__codelineno-35-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<ol>
+<li><strong>Pruebas de WebSockets</strong>:</li>
+</ol>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nd">@Test</span>
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">testWebSocketEndpoint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a><span class="w">    </span><span class="n">WebSocketClient</span><span class="w"> </span><span class="n">client</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ReactorNettyWebSocketClient</span><span class="p">();</span>
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a><span class="w">    </span><span class="n">URI</span><span class="w"> </span><span class="n">uri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">URI</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="s">&quot;ws://localhost:&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">port</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/ws&quot;</span><span class="p">);</span>
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a><span class="w">    </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">output</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">client</span><span class="p">.</span><span class="na">execute</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a><span class="w">        </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">input</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">send</span><span class="p">(</span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="n">session</span><span class="p">.</span><span class="na">textMessage</span><span class="p">(</span><span class="s">&quot;Hola&quot;</span><span class="p">)));</span>
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a><span class="w">        </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">receive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="p">.</span><span class="na">receive</span><span class="p">()</span>
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a><span class="w">            </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">WebSocketMessage</span><span class="p">::</span><span class="n">getPayloadAsText</span><span class="p">)</span>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a><span class="w">            </span><span class="p">.</span><span class="na">doOnNext</span><span class="p">(</span><span class="n">text</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a><span class="w">                </span><span class="n">assertThat</span><span class="p">(</span><span class="n">text</span><span class="p">).</span><span class="na">isEqualTo</span><span class="p">(</span><span class="s">&quot;HOLA&quot;</span><span class="p">);</span>
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a><span class="w">            </span><span class="p">})</span>
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a><span class="w">            </span><span class="p">.</span><span class="na">then</span><span class="p">();</span>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">input</span><span class="p">.</span><span class="na">then</span><span class="p">(</span><span class="n">receive</span><span class="p">);</span>
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a><span class="w">    </span><span class="n">StepVerifier</span><span class="p">.</span><span class="na">create</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a><span class="w">        </span><span class="p">.</span><span class="na">expectComplete</span><span class="p">()</span>
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a><span class="w">        </span><span class="p">.</span><span class="na">verify</span><span class="p">(</span><span class="n">Duration</span><span class="p">.</span><span class="na">ofSeconds</span><span class="p">(</span><span class="mi">5</span><span class="p">));</span>
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="desventajas-y-consideraciones">Desventajas y Consideraciones</h2>
+<h3 id="17-cuales-son-las-desventajas-de-usar-reactive-streams">17. ¿Cuáles son las desventajas de usar Reactive Streams?</h3>
+<p>A pesar de sus beneficios, la programación reactiva tiene varias desventajas:</p>
+<ol>
+<li><strong>Curva de aprendizaje pronunciada</strong>: El paradigma reactivo requiere cambiar la forma de pensar.</li>
+<li><strong>Debugging más complejo</strong>: Las stack traces son menos intuitivas y más difíciles de seguir.</li>
+<li><strong>Mayor complejidad de código</strong>: El código reactivo puede ser más difícil de leer y mantener.</li>
+<li><strong>Posible sobreutilización</strong>: No todas las aplicaciones necesitan reactividad.</li>
+<li><strong>Ecosistema limitado</strong>: No todas las bibliotecas tienen versiones reactivas.</li>
+<li><strong>Problemas de desarrollo</strong>: Las herramientas de desarrollo (IDEs, profilers) están menos optimizadas.</li>
+<li><strong>Mayor uso de memoria</strong>: En algunos casos, puede requerir más memoria que el enfoque imperativo.</li>
+<li><strong>Riesgo de bloqueo accidental</strong>: Mezclar código bloqueante con no bloqueante puede degradar el rendimiento.</li>
+</ol>
+<p>Ejemplo de código más complejo:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="c1">// Imperativo (simple)</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">activos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarios</span><span class="p">.</span><span class="na">stream</span><span class="p">()</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">    </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">Usuario</span><span class="p">::</span><span class="n">isActivo</span><span class="p">)</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="w">    </span><span class="p">.</span><span class="na">collect</span><span class="p">(</span><span class="n">Collectors</span><span class="p">.</span><span class="na">toList</span><span class="p">());</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="c1">// Reactivo (más complejo)</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="n">Flux</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="n">usuariosFlux</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuarioRepository</span><span class="p">.</span><span class="na">findAll</span><span class="p">();</span>
+</span><span id="__span-37-9"><a id="__codelineno-37-9" name="__codelineno-37-9" href="#__codelineno-37-9"></a><span class="n">Mono</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">activosMono</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">usuariosFlux</span>
+</span><span id="__span-37-10"><a id="__codelineno-37-10" name="__codelineno-37-10" href="#__codelineno-37-10"></a><span class="w">    </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">Usuario</span><span class="p">::</span><span class="n">isActivo</span><span class="p">)</span>
+</span><span id="__span-37-11"><a id="__codelineno-37-11" name="__codelineno-37-11" href="#__codelineno-37-11"></a><span class="w">    </span><span class="p">.</span><span class="na">collectList</span><span class="p">()</span>
+</span><span id="__span-37-12"><a id="__codelineno-37-12" name="__codelineno-37-12" href="#__codelineno-37-12"></a><span class="w">    </span><span class="p">.</span><span class="na">doOnError</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">log</span><span class="p">.</span><span class="na">error</span><span class="p">(</span><span class="s">&quot;Error: {}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()))</span>
+</span><span id="__span-37-13"><a id="__codelineno-37-13" name="__codelineno-37-13" href="#__codelineno-37-13"></a><span class="w">    </span><span class="p">.</span><span class="na">onErrorResume</span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">just</span><span class="p">(</span><span class="n">Collections</span><span class="p">.</span><span class="na">emptyList</span><span class="p">()));</span>
+</span></code></pre></div></p>
+<h3 id="18-cuando-no-deberias-usar-programacion-reactiva">18. ¿Cuándo NO deberías usar programación reactiva?</h3>
+<p>No deberías usar programación reactiva en estos escenarios:</p>
+<ol>
+<li><strong>Aplicaciones CRUD simples</strong>: Las aplicaciones con operaciones simples de base de datos sin necesidad de alta concurrencia.</li>
+<li><strong>Equipos sin experiencia</strong>: Cuando el equipo no está familiarizado con el paradigma reactivo y no hay tiempo para capacitación.</li>
+<li><strong>Dependencias bloqueantes</strong>: Cuando dependes de bibliotecas o APIs que son inherentemente bloqueantes.</li>
+<li><strong>Operaciones intensivas de CPU</strong>: La programación reactiva brilla en operaciones de E/S, no tanto en cálculos intensivos.</li>
+<li><strong>Necesidades de rendimiento modestas</strong>: Si tu aplicación no requiere manejar miles de conexiones concurrentes.</li>
+<li><strong>Proyectos con plazos ajustados</strong>: La curva de aprendizaje puede afectar los plazos de entrega.</li>
+<li><strong>Cuando la simplicidad es prioritaria</strong>: La legibilidad y mantenibilidad pueden verse comprometidas.</li>
+<li><strong>Aplicaciones batch o de procesamiento por lotes</strong>: Donde el procesamiento secuencial es más apropiado.</li>
+</ol>
+<h3 id="19-como-afecta-la-programacion-reactiva-al-rendimiento-y-consumo-de-recursos">19. ¿Cómo afecta la programación reactiva al rendimiento y consumo de recursos?</h3>
+<p>La programación reactiva puede tener diferentes impactos en el rendimiento:</p>
+<p><strong>Beneficios</strong>:</p>
+<ul>
+<li><strong>Mejor uso de CPU</strong>: Menos hilos pueden manejar más solicitudes.</li>
+<li><strong>Mayor throughput</strong>: Puede procesar más solicitudes por segundo.</li>
+<li><strong>Mejor manejo de concurrencia</strong>: Sin bloqueos de hilos para operaciones de E/S.</li>
+<li><strong>Escalabilidad vertical</strong>: Aprovecha mejor los recursos de una sola máquina.</li>
+<li><strong>Menor sobrecarga de contexto</strong>: Menos cambios de contexto entre hilos.</li>
+</ul>
+<p><strong>Consideraciones</strong>:</p>
+<ul>
+<li><strong>Overhead inicial</strong>: Mayor uso de memoria para estructuras reactivas.</li>
+<li><strong>Presión en GC</strong>: Más objetos temporales pueden aumentar la actividad del recolector de basura.</li>
+<li><strong>Complejidad de optimización</strong>: Más difícil de perfilar y optimizar.</li>
+<li><strong>Rendimiento vs. complejidad</strong>: El beneficio debe justificar la complejidad adicional.</li>
+</ul>
+<p>Comparativa de rendimiento:</p>
+<ul>
+<li>Con <strong>pocas conexiones simultáneas</strong> (&lt; 100): Spring MVC puede ser más eficiente.</li>
+<li>Con <strong>muchas conexiones simultáneas</strong> (&gt; 1000): WebFlux suele ofrecer mejor rendimiento.</li>
+<li>Con <strong>operaciones bloqueantes</strong>: WebFlux puede degradarse significativamente.</li>
+</ul>
+<h3 id="20-como-se-integra-la-seguridad-en-aplicaciones-webflux">20. ¿Cómo se integra la seguridad en aplicaciones WebFlux?</h3>
+<p>Spring Security se integra con WebFlux a través de un modelo reactivo:</p>
+<div class="language-java highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="nd">@Configuration</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nd">@EnableWebFluxSecurity</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SecurityConfig</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a><span class="w">    </span><span class="nd">@Bean</span>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">SecurityWebFilterChain</span><span class="w"> </span><span class="nf">securityWebFilterChain</span><span class="p">(</span><span class="n">ServerHttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">http</span>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="w">            </span><span class="p">.</span><span class="na">csrf</span><span class="p">().</span><span class="na">disable</span><span class="p">()</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="w">            </span><span class="p">.</span><span class="na">authorizeExchange</span><span class="p">()</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a><span class="w">                </span><span class="p">.</span><span class="na">pathMatchers</span><span class="p">(</span><span class="s">&quot;/public/**&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+</span><span id="__span-38-11"><a id="__codelineno-38-11" name="__codelineno-38-11" href="#__codelineno-38-11"></a><span class="w">                </span><span class="p">.</span><span class="na">pathMatchers</span><span class="p">(</span><span class="s">&quot;/api/admin/**&quot;</span><span class="p">).</span><span class="na">hasRole</span><span class="p">(</span><span class="s">&quot;ADMIN&quot;</span><span class="p">)</span>
+</span><span id="__span-38-12"><a id="__codelineno-38-12" name="__codelineno-38-12" href="#__codelineno-38-12"></a><span class="w">                </span><span class="p">.</span><span class="na">anyExchange</span><span class="p">().</span><span class="na">authenticated</span><span class="p">()</span>
+</span><span id="__span-38-13"><a id="__codelineno-38-13" name="__codelineno-38-13" href="#__codelineno-38-13"></a><span class="w">            </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+</span><span id="__span-38-14"><a id="__codelineno-38-14" name="__codelineno-38-14" href="#__codelineno-38-14"></a><span class="w">            </span><span class="p">.</span><span class="na">httpBasic</span><span class="p">()</span>
+</span><span id="__span-38-15"><a id="__codelineno-38-15" name="__codelineno-38-15" href="#__codelineno-38-15"></a><span class="w">            </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+</span><span id="__span-38-16"><a id="__codelineno-38-16" name="__codelineno-38-16" href="#__codelineno-38-16"></a><span class="w">            </span><span class="p">.</span><span class="na">formLogin</span><span class="p">()</span>
+</span><span id="__span-38-17"><a id="__codelineno-38-17" name="__codelineno-38-17" href="#__codelineno-38-17"></a><span class="w">            </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+</span><span id="__span-38-18"><a id="__codelineno-38-18" name="__codelineno-38-18" href="#__codelineno-38-18"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</span><span id="__span-38-19"><a id="__codelineno-38-19" name="__codelineno-38-19" href="#__codelineno-38-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-38-20"><a id="__codelineno-38-20" name="__codelineno-38-20" href="#__codelineno-38-20"></a>
+</span><span id="__span-38-21"><a id="__codelineno-38-21" name="__codelineno-38-21" href="#__codelineno-38-21"></a><span class="w">    </span><span class="nd">@Bean</span>
+</span><span id="__span-38-22"><a id="__codelineno-38-22" name="__codelineno-38-22" href="#__codelineno-38-22"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">ReactiveUserDetailsService</span><span class="w"> </span><span class="nf">userDetailsService</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-38-23"><a id="__codelineno-38-23" name="__codelineno-38-23" href="#__codelineno-38-23"></a><span class="w">        </span><span class="n">UserDetails</span><span class="w"> </span><span class="n">user</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="na">withDefaultPasswordEncoder</span><span class="p">()</span>
+</span><span id="__span-38-24"><a id="__codelineno-38-24" name="__codelineno-38-24" href="#__codelineno-38-24"></a><span class="w">            </span><span class="p">.</span><span class="na">username</span><span class="p">(</span><span class="s">&quot;user&quot;</span><span class="p">)</span>
+</span><span id="__span-38-25"><a id="__codelineno-38-25" name="__codelineno-38-25" href="#__codelineno-38-25"></a><span class="w">            </span><span class="p">.</span><span class="na">password</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">)</span>
+</span><span id="__span-38-26"><a id="__codelineno-38-26" name="__codelineno-38-26" href="#__codelineno-38-26"></a><span class="w">            </span><span class="p">.</span><span class="na">roles</span><span class="p">(</span><span class="s">&quot;USER&quot;</span><span class="p">)</span>
+</span><span id="__span-38-27"><a id="__codelineno-38-27" name="__codelineno-38-27" href="#__codelineno-38-27"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</span><span id="__span-38-28"><a id="__codelineno-38-28" name="__codelineno-38-28" href="#__codelineno-38-28"></a>
+</span><span id="__span-38-29"><a id="__codelineno-38-29" name="__codelineno-38-29" href="#__codelineno-38-29"></a><span class="w">        </span><span class="n">UserDetails</span><span class="w"> </span><span class="n">admin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">User</span><span class="p">.</span><span class="na">withDefaultPasswordEncoder</span><span class="p">()</span>
+</span><span id="__span-38-30"><a id="__codelineno-38-30" name="__codelineno-38-30" href="#__codelineno-38-30"></a><span class="w">            </span><span class="p">.</span><span class="na">username</span><span class="p">(</span><span class="s">&quot;admin&quot;</span><span class="p">)</span>
+</span><span id="__span-38-31"><a id="__codelineno-38-31" name="__codelineno-38-31" href="#__codelineno-38-31"></a><span class="w">            </span><span class="p">.</span><span class="na">password</span><span class="p">(</span><span class="s">&quot;password&quot;</span><span class="p">)</span>
+</span><span id="__span-38-32"><a id="__codelineno-38-32" name="__codelineno-38-32" href="#__codelineno-38-32"></a><span class="w">            </span><span class="p">.</span><span class="na">roles</span><span class="p">(</span><span class="s">&quot;ADMIN&quot;</span><span class="p">)</span>
+</span><span id="__span-38-33"><a id="__codelineno-38-33" name="__codelineno-38-33" href="#__codelineno-38-33"></a><span class="w">            </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</span><span id="__span-38-34"><a id="__codelineno-38-34" name="__codelineno-38-34" href="#__codelineno-38-34"></a>
+</span><span id="__span-38-35"><a id="__codelineno-38-35" name="__codelineno-38-35" href="#__codelineno-38-35"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">MapReactiveUserDetailsService</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">admin</span><span class="p">);</span>
+</span><span id="__span-38-36"><a id="__codelineno-38-36" name="__codelineno-38-36" href="#__codelineno-38-36"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-38-37"><a id="__codelineno-38-37" name="__codelineno-38-37" href="#__codelineno-38-37"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Para trabajar con JWT:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nd">@Bean</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="kd">public</span><span class="w"> </span><span class="n">SecurityWebFilterChain</span><span class="w"> </span><span class="nf">securityWebFilterChain</span><span class="p">(</span><span class="n">ServerHttpSecurity</span><span class="w"> </span><span class="n">http</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">http</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">        </span><span class="p">.</span><span class="na">csrf</span><span class="p">().</span><span class="na">disable</span><span class="p">()</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="w">        </span><span class="p">.</span><span class="na">authorizeExchange</span><span class="p">()</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="w">            </span><span class="p">.</span><span class="na">pathMatchers</span><span class="p">(</span><span class="s">&quot;/auth/**&quot;</span><span class="p">).</span><span class="na">permitAll</span><span class="p">()</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="w">            </span><span class="p">.</span><span class="na">anyExchange</span><span class="p">().</span><span class="na">authenticated</span><span class="p">()</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="w">        </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a><span class="w">        </span><span class="p">.</span><span class="na">addFilterAt</span><span class="p">(</span><span class="n">jwtAuthenticationFilter</span><span class="p">,</span><span class="w"> </span><span class="n">SecurityWebFiltersOrder</span><span class="p">.</span><span class="na">HTTP_BASIC</span><span class="p">)</span>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="w">        </span><span class="p">.</span><span class="na">exceptionHandling</span><span class="p">()</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="w">            </span><span class="p">.</span><span class="na">authenticationEntryPoint</span><span class="p">((</span><span class="n">swe</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span>
+</span><span id="__span-39-12"><a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="w">                </span><span class="n">Mono</span><span class="p">.</span><span class="na">fromRunnable</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">swe</span><span class="p">.</span><span class="na">getResponse</span><span class="p">().</span><span class="na">setStatusCode</span><span class="p">(</span><span class="n">HttpStatus</span><span class="p">.</span><span class="na">UNAUTHORIZED</span><span class="p">)))</span>
+</span><span id="__span-39-13"><a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="w">        </span><span class="p">.</span><span class="na">and</span><span class="p">()</span>
+</span><span id="__span-39-14"><a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a><span class="w">        </span><span class="p">.</span><span class="na">build</span><span class="p">();</span>
+</span><span id="__span-39-15"><a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<p>La autenticación y autorización en WebFlux se basan en operadores reactivos:
+<div class="language-java highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/usuario/actual&quot;</span><span class="p">)</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getUsuarioActual</span><span class="p">(</span><span class="n">Authentication</span><span class="w"> </span><span class="n">authentication</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Mono</span><span class="p">.</span><span class="na">justOrEmpty</span><span class="p">(</span><span class="n">authentication</span><span class="p">)</span>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Authentication</span><span class="p">::</span><span class="n">getName</span><span class="p">)</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="w">        </span><span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">usuarioService</span><span class="p">::</span><span class="n">findByUsername</span><span class="p">);</span>
+</span><span id="__span-40-6"><a id="__codelineno-40-6" name="__codelineno-40-6" href="#__codelineno-40-6"></a><span class="p">}</span>
+</span><span id="__span-40-7"><a id="__codelineno-40-7" name="__codelineno-40-7" href="#__codelineno-40-7"></a>
+</span><span id="__span-40-8"><a id="__codelineno-40-8" name="__codelineno-40-8" href="#__codelineno-40-8"></a><span class="c1">// O usando SecurityContextHolder reactivo</span>
+</span><span id="__span-40-9"><a id="__codelineno-40-9" name="__codelineno-40-9" href="#__codelineno-40-9"></a><span class="kd">public</span><span class="w"> </span><span class="n">Mono</span><span class="o">&lt;</span><span class="n">Usuario</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">getUsuarioActual</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-40-10"><a id="__codelineno-40-10" name="__codelineno-40-10" href="#__codelineno-40-10"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ReactiveSecurityContextHolder</span><span class="p">.</span><span class="na">getContext</span><span class="p">()</span>
+</span><span id="__span-40-11"><a id="__codelineno-40-11" name="__codelineno-40-11" href="#__codelineno-40-11"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">SecurityContext</span><span class="p">::</span><span class="n">getAuthentication</span><span class="p">)</span>
+</span><span id="__span-40-12"><a id="__codelineno-40-12" name="__codelineno-40-12" href="#__codelineno-40-12"></a><span class="w">        </span><span class="p">.</span><span class="na">map</span><span class="p">(</span><span class="n">Authentication</span><span class="p">::</span><span class="n">getName</span><span class="p">)</span>
+</span><span id="__span-40-13"><a id="__codelineno-40-13" name="__codelineno-40-13" href="#__codelineno-40-13"></a><span class="w">        </span><span class="p">.</span><span class="na">flatMap</span><span class="p">(</span><span class="n">usuarioService</span><span class="p">::</span><span class="n">findByUsername</span><span class="p">);</span>
+</span><span id="__span-40-14"><a id="__codelineno-40-14" name="__codelineno-40-14" href="#__codelineno-40-14"></a><span class="p">}</span>
+</span></code></pre></div></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 Geovanny Mendoza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geovannymcode" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M202.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M496 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geovannycode" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/geovannycode/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
