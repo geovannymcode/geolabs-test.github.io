@@ -646,7 +646,6 @@ ORDER BY ul.date_completed DESC;
 ```
 
 ---
----
 
 ## 26. Pregunta de lógica 1
 
